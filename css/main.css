@@ -5,7 +5,9 @@
     box-sizing: border-box;
 }
 
-
+.navbar-brand img{
+    width: 20vw;
+}
 main {
     min-height: 90vh;
 }
