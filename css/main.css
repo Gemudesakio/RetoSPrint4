@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+body {
+    background-image: url(../assets/imagenes/universo_oscuro.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 header {
     -webkit-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
     -moz-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
@@ -39,6 +46,22 @@ main {
     .carousel-inner img {
         max-height: 300px;
     }
+}
+
+.status {
+    height: 30vh;
+    width: 30vh;
+    border-radius: 50%;
+    background-color: yellowgreen;
+    background: repeating-conic-gradient(from 0deg, green 0deg 191deg, red 191deg 316deg, gray 316deg 360deg);
+}
+
+.gender {
+    height: 30vh;
+    width: 30vh;
+    border-radius: 50%;
+    background-color: blue;
+    background: repeating-conic-gradient(from 0deg, blue 0deg 266deg, pink 266deg 330deg, green 330deg 338deg, gray 338deg 360deg);
 }
 
 /* Ajustes adicionales para tamaños de pantalla extra pequeños */
