@@ -1,130 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Episodes</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="./imagenes/favicon.png" type="image/x-icon">
-    
-    <!-- Estilos personales -->
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="icon" href="../assets/imagenes/favicon.jpg" type="image/png">
-  
-    
-   </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rick and Morty - Episodes</title>
+  <!--Favicon-->
+  <link rel="icon" href="https://downloadr2.apkmirror.com/wp-content/uploads/2019/11/5dc0448d0b32f.png" type="image/png">
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!--Estilos Base-->
+  <link rel="stylesheet" href="../css/main.css">
+  <!--Estilos de la pagina-->
+  <link rel="stylesheet" href="../css/episodes.css">
+
+</head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="../index.html"><img id="logo" src="../assets/imagenes/logo.png" alt="LOGO"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+
+  <section class="sec1-video">
+      <video class="video-bg" autoplay muted loop playsinline>
+        <source src="../assets/videos/rickAndMorty.mkv" type="video/mp4">
+      </video>
+    
+  </section>
+  <!--Header-->
+  <header class="sticky-top">
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+      <div class="container-fluid">
+
+        <a class="navbar-brand mx-5" href="../index.html">
+          <img id="logo" class="navbar-brand-logo"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/800px-Rick_and_Morty.svg.png"
+            alt="LOGO">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end mx-3" id="navbarSupportedContent">
+          <ul class="navbar-nav  mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./characters.html">Characters</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./location.html">Locations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./episode.html">Episodes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./Stats.html">Stats</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main id="appEpisodios">
+    <section class="sec2 mt-5 mb-5 d-flex flex-column justify-content-center">
+      <h1 class="my-4 text-center text-white">Rick and Morty Episodes</h1>
+      <form class="row mt-3 mb-3 container m-auto" role="search">
+        <input v-model="textoBuscador" class="form-control me-2 col-12" type="search" placeholder="Search" aria-label="Search" id="textSearch">
+      </form>
+      <div class="d-flex justify-content-center flex-wrap gap-3">
+        <button @click="filterButton('S01')" type="button" class="btn btn-warning">Season 1</button>
+        <button @click="filterButton('S02')" type="button" class="btn btn-warning">Season 2</button>
+        <button @click="filterButton('S03')" type="button" class="btn btn-warning">Season 3</button>
+        <button @click="filterButton('S04')" type="button" class="btn btn-warning">Season 4</button>
+        <button @click="filterButton('S05')" type="button" class="btn btn-warning">Season 5</button>
+        <button @click="resetFilter" type="button" class="btn btn-secondary">Reset Filter</button>
+      </div>
+      <div class="m-3 d-flex justify-content-center">
+        <!-- Button lanzador modal favoritos -->
+      <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
+          View Favorites
+      </button>
+
+        <!-- Modal Favoritos -->
+        <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold text-center w-100" id="favoritesModalLabel">Favorite Characters</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div v-for="episode in favoritos" :key="episode.id" class="card mb-3">
+                  <div class="card-img-container">
+                    <button class="btn btn-danger btn-favoritos" @click="eliminarFavorito(episode)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                      </svg>
+                    </button>
+                    <img :src="episode.image || '../assets/imagenes/prueba.jpg'" class="card-img-top" alt="Episode Image">
+                  </div>
+                  <div class="card-body d-flex flex-column align-items-center gap-2">
+                    <h2 class="card-title fw-bold text-white text-center">{{episode.name}}</h2>
+                    <p class="card-text fw-bold text-white text-center">
+                      The episode <strong>"{{ episode.name }}"</strong>, part of {{ episode.episode.split('E')[0].replace('S', 'season ') }} and being the number {{ episode.episode.split('E')[1] }} episode, premiered on {{ new Date(episode.air_date).toLocaleDateString() }}. This episode was created on {{ new Date(episode.created).toLocaleDateString() }}.
+                    </p>
+                    <div class="bar">
+                      <div class="emptybar"></div>
+                      <div class="filledbar"></div>
+                    </div>
+                    <button class="btn btn-primary" @click="fetchCharacters(episode)" data-bs-toggle="modal" data-bs-target="#charactersModal">
+                      View Characters
+                    </button>
+                  </div>  
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    <section class="sec3">
+      <div class="container-fluid">
+        <div class="container d-flex flex-wrap justify-content-center">
+          <div v-if="filteredEpisodes.length === 0">
+            <p class="fw-bold text-white">No se encontraron resultados</p>
+          </div>
+          <div v-for="episode in filteredEpisodes" :key="episode.id" class="card">
+            <div class="card-img-container">
+              <button class="btn btn-warning btn-favoritos" @click="agregarFavorito(episode)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                </svg>
               </button>
-              <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+              <img :src="episode.image || '../assets/imagenes/prueba.jpg'" class="card-img-top" alt="Episode Image">
+            </div>
+            <div class="card-body d-flex flex-column align-items-center gap-2">
+              <h2 class="card-title fw-bold text-white text-center">{{episode.name}}</h2>
+              <p class="card-text fw-bold text-white text-center">
+                The episode <strong>"{{ episode.name }}"</strong>, part of {{ episode.episode.split('E')[0].replace('S', 'season ') }} and being the number {{ episode.episode.split('E')[1] }} episode, premiered on {{ new Date(episode.air_date).toLocaleDateString() }}. This episode was created on {{ new Date(episode.created).toLocaleDateString() }}.
+              </p>
+              <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
+              </div>
+            
+              <button class="btn btn-primary" @click="fetchCharacters(episode)" data-bs-toggle="modal" data-bs-target="#charactersModal">
+                View Characters
+              </button>
+            </div>  
+          </div>
+        </div>
+        <div class="pagination d-flex justify-content-center gap-2 m-5">
+          <button class="btn btn-primary" @click="prevPage" :disabled="!info.prev">Prev</button>
+          <button class="btn btn-primary" @click="nextPage" :disabled="!info.next">Next</button>
+        </div>
+        <div class="modal fade" id="charactersModal" tabindex="-1" role="dialog" aria-labelledby="charactersModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fw-bold text-center w-100" id="charactersModalLabel">{{ selectedEpisode ? selectedEpisode.name + ', Characters' : 'Characters' }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <ul id="characters-list" class="list-group">
+                  <li v-for="character in characters" :key="character.id" class="list-group-item">
+                    <img :src="character.image" alt="" class="img-thumbnail me-2" style="width: 50px; height: 50px;">
+                    {{ character.name }}
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./characters.html">Characters</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./location.html">Location</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Episode</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./stats.html">Stats</a>
-                  </li>          
                 </ul>
               </div>
             </div>
-          </nav>
-    </header>
-    <main id="appEpisodios">
-      <div class="container-fluid">
-        <h1 class="my-4 text-center text-white">Rick and Morty Episodes</h1>
-        <div class="container d-flex flex-wrap justify-content-center">
-
-          <div v-for="episode in episodes" class="card">
-            <img :src="episode.image || '../assets/imagenes/prueba.jpg'" class="card-img-top" alt="Episode Image">
-            <div class="card-body d-flex flex-column align-items-center gap-2">
-                <h2 class="card-title fw-bold text-white text-center">{{episode.name}}</h2>
-                <!-- descripcion del episodio-->
-                <p class="card-text fw-bold text-white text-center">
-                    The episode <strong>"{{ episode.name }}"</strong>, part of {{ episode.episode.split('E')[0].replace('S', 'season ') }} and being the number {{ episode.episode.split('E')[1] }} episode, premiered on {{ new Date(episode.air_date).toLocaleDateString() }}. This episode was created on {{ new Date(episode.created).toLocaleDateString() }}.
-                </p>
-        
-               
-                <div class="bar">
-                    <div class="emptybar"></div>
-                    <div class="filledbar"></div>
-                </div>
-        
-             
-                <button class="btn btn-primary" @click="fetchCharacters(episode)" data-bs-toggle="modal" data-bs-target="#charactersModal">
-                    View Characters
-                </button>
-            </div>
-        </div>
-        
-        
-        
-
-        <!-- <div class="text-center my-4">
-          <button id="load-more" class="btn btn-primary">Load More Episodes</button>
-        </div> -->
-      </div>
-
- 
-  <!-- Modal para mostrar personajes -->
-    <div class="modal fade" id="charactersModal" tabindex="-1" role="dialog" aria-labelledby="charactersModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-              
-               <h5 class="modal-title fw-bold text-center w-100" id="charactersModalLabel">{{ selectedEpisode? selectedEpisode.name + ', Characters' : 'Characters' }}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <ul id="characters-list" class="list-group">
-                      <li v-for="character in characters" class="list-group-item">
-                          <img :src="character.image" alt="" class="img-thumbnail me-2" style="width: 50px; height: 50px;">
-                          {{ character.name }}
-                      </li>
-                  </ul>
-              </div>
           </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white p-3 mt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p class="mb-0">&copy; 2024 Misraim Hernández, Luis Eduardo Rivera Martos, Yamid Barrera, Joan Sebastian
+            Vargas, Jose Manuel Cerquera Vargas. Todos los derechos reservados.</p>
+        </div>
       </div>
     </div>
+  </footer>
 
-    </main>
-
-    <footer class="bg-dark text-white p-3 mt-auto">
-        <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <p class="mb-0">&copy; 2024 Misraim Hernández, Luis Eduardo Rivera Martos, Yamid Barrera, Joan Sebastian Vargas, Jose Manuel Cerquera Vargas. Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap Script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!--vue-->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <!--Script de index-->
-    <script src="../js/episode.js"></script>
+  <!--Bootstrap Script-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <!--Vue Scripy-->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!--episode script-->
+  <script src="../js/episode.js" type="module"></script>
 </body>
+
 </html>

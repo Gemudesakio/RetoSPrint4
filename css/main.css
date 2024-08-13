@@ -1,15 +1,7 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-.navbar-brand img{
-    width: 20vw;
-}
-main {
-    min-height: 90vh;
 }
 
 body {
@@ -17,79 +9,89 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-
-.card {
-    min-height: 60vh; 
-    width: 50vh;
-    background-color: #17141d;
-    border-radius: 10px;
-    box-shadow: -1rem 0 3rem #000;
-    margin: 20px;
-    transition: 0.4s ease-out;
-    padding: 20px;
+header {
+    -webkit-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
+    -moz-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
+    box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
 }
 
-.card:hover {
-    transform: translateY(-20px);
-    transition: 0.4s ease-out;
+main {
+    min-height: 90vh;
 }
 
-
-.title {
-    color: white;
-    font-weight: 400;
-    position: absolute;
-    top: 15px;
-    text-align: center;
+.navbar-brand img {
+    width: 20vw;
 }
 
-/* Estilo de la barra de progreso */
-.bar {
-    margin-left: 150px;
-    width: 150px;
-    height: 5px;
-    transform: translateX(-50%);
-}
-
-.emptybar {
-    background-color: #2e3033;
-    width: 100%;
-    height: 100%;
-}
-
-.filledbar {
-    position: absolute;
-    bottom: 0;
-    z-index: 3;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
-    transition: 0.6s ease-out;
-}
-
-.card:hover .filledbar {
-    width: 150px;
-    transition: 0.4s ease-out;
-}
-
-
-/* Estilo para el contenedor del carrusel */
 .carousel {
-    height: 60vh;
+    height: 350px;
+}
+/* ajustes para video de fondo */
+
+
+
+.sec1-video {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden; /* Para asegurar que el video no se desborde */
 }
 
-.carousel-inner {
-    height: 100%;
-}
-
-.carousel-inner img {
-    object-fit: cover;
-}
-
-.carousel-item img {
+.video-bg {
     width: 100%;
-    height: 500px;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+    z-index: -1; 
+}
+
+
+/* Ajuste responsivo para el carrusel */
+.carousel-inner img {
+    width: 100%;
+    height: 350px;
     object-fit: cover;
+    max-height: 500px;
+}
+
+/* Ajustes adicionales para tamaños de pantalla pequeños */
+@media (max-width: 768px) {
+    .carousel {
+        height: 300px;
+    }
+
+    .carousel-inner img {
+        max-height: 300px;
+    }
+}
+
+/* Ajustes adicionales para tamaños de pantalla extra pequeños */
+@media (max-width: 576px) {
+    .carousel {
+        height: 200px;
+    }
+
+    .carousel-inner img {
+        max-height: 200px;
+    }
+}
+
+/* Ajustes adicionales para tamaños de pantalla extra extra pequeños */
+@media (max-width: 400px) {
+    .carousel {
+        height: 150px;
+    }
+
+    .carousel-inner img {
+        max-height: 150px;
+    }
+
+    .navbar-brand-logo {
+        height: 35px;
+    }
 }
 
 /* Estilo para el pie de página */
