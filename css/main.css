@@ -34,6 +34,7 @@ main {
     max-height: 500px;
 }
 
+
 /* Ajustes adicionales para tamaños de pantalla pequeños */
 @media (max-width: 768px) {
     .carousel {
