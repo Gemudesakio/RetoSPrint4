@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 .navbar-brand img{
     width: 20vw;
 }
@@ -51,25 +52,19 @@ body {
 .emptybar {
     background-color: #2e3033;
     width: 100%;
+=======
+>>>>>>> locationsMisraim
 header {
-    height: 70px;
-    width: 100%;
     -webkit-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
     -moz-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
     box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-
-}   
+}
 
 main {
-    margin-top: 10vh;
     min-height: 90vh;
 }
 
+<<<<<<< HEAD
 
 .navbar {
     height: 100%;
@@ -88,28 +83,27 @@ main {
 .card:hover .filledbar {
     width: 150px;
     transition: 0.4s ease-out;
+=======
+.navbar-brand-logo {
+    height: 50px;
+>>>>>>> locationsMisraim
 }
 
 
 /* Estilo para el contenedor del carrusel */
 .carousel {
-    height: 500px;
+    height: 350px;
 }
 
-.carousel-inner {
-    height: 100%;
-}
-
+/* Ajuste responsivo para el carrusel */
 .carousel-inner img {
-    object-fit: cover;
-}
-
-.carousel-item img {
     width: 100%;
-    height: 500px;
+    height: 350px;
     object-fit: cover;
+    max-height: 500px;
 }
 
+<<<<<<< HEAD
 /* Estilo para el pie de página */
 footer {
     background-color: #000;
@@ -139,22 +133,41 @@ footer .container {
     border-radius: 50%;
     background-color:blue;
     background:repeating-conic-gradient( from 0deg, blue 0deg 266deg, pink 266deg 330deg, green 330deg 338deg, gray 338deg 360deg);
+=======
+/* Ajustes adicionales para tamaños de pantalla pequeños */
+@media (max-width: 768px) {
+    .carousel {
+        height: 300px;
+    }
+
+    .carousel-inner img {
+        max-height: 300px;
+    }
+>>>>>>> locationsMisraim
 }
 
-.stats{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.5rem;
+/* Ajustes adicionales para tamaños de pantalla extra pequeños */
+@media (max-width: 576px) {
+    .carousel {
+        height: 200px;
+    }
+
+    .carousel-inner img {
+        max-height: 200px;
+    }
 }
 
-#topTenC, #topTenL, #residents {
-    flex-direction: column;
-    text-align: center;
-}
+/* Ajustes adicionales para tamaños de pantalla extra  extra pequeños */
+@media (max-width: 400px) {
+    .carousel {
+        height: 150px;
+    }
 
-.container-total-data{
-    height: 150px;
-}
+    .carousel-inner img {
+        max-height: 150px;
+    }
 
+<<<<<<< HEAD
 .container-filter-checkbox-locations {
     max-height: 150px;
     overflow-y: auto;
@@ -205,3 +218,9 @@ footer .container {
       3px 3px 6px rgba(0, 0, 0, 0.5);
   }
 
+=======
+    .navbar-brand-logo {
+        height: 35px;
+    }
+}
+>>>>>>> locationsMisraim
