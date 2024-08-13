@@ -5,55 +5,6 @@
     box-sizing: border-box;
 }
 
-<<<<<<< HEAD
-.navbar-brand img{
-    width: 20vw;
-}
-
-body {
-    background-color: #100e17;
-    font-family: 'Open Sans', sans-serif;
-}
-
-
-.card {
-    min-height: 60vh; 
-    width: 50vh;
-    background-color: #17141d;
-    border-radius: 10px;
-    box-shadow: -1rem 0 3rem #000;
-    margin: 20px;
-    transition: 0.4s ease-out;
-    padding: 20px;
-}
-
-.card:hover {
-    transform: translateY(-20px);
-    transition: 0.4s ease-out;
-}
-
-
-.title {
-    color: white;
-    font-weight: 400;
-    position: absolute;
-    top: 15px;
-    text-align: center;
-}
-
-/* Estilo de la barra de progreso */
-.bar {
-    margin-left: 150px;
-    width: 150px;
-    height: 5px;
-    transform: translateX(-50%);
-}
-
-.emptybar {
-    background-color: #2e3033;
-    width: 100%;
-=======
->>>>>>> locationsMisraim
 header {
     -webkit-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
     -moz-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
@@ -64,29 +15,8 @@ main {
     min-height: 90vh;
 }
 
-<<<<<<< HEAD
-
-.navbar {
-    height: 100%;
-}
-
-.filledbar {
-    position: absolute;
-    bottom: 0;
-    z-index: 3;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
-    transition: 0.6s ease-out;
-}
-
-.card:hover .filledbar {
-    width: 150px;
-    transition: 0.4s ease-out;
-=======
 .navbar-brand-logo {
     height: 50px;
->>>>>>> locationsMisraim
 }
 
 
@@ -103,37 +33,6 @@ main {
     max-height: 500px;
 }
 
-<<<<<<< HEAD
-/* Estilo para el pie de página */
-footer {
-    background-color: #000;
-    color: #fff;
-    padding: 1rem;
-    margin-top: auto;
-    height: 70px;
-}
-
-footer .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.status {
-    height: 30vh;
-    width: 30vh;
-    border-radius: 50%;
-    background-color:yellowgreen;
-    background:repeating-conic-gradient( from 0deg, green 0deg 191deg, red 191deg 316deg, gray 316deg 360deg);
-}
-.gender{
-    height: 30vh;
-    width: 30vh;
-    border-radius: 50%;
-    background-color:blue;
-    background:repeating-conic-gradient( from 0deg, blue 0deg 266deg, pink 266deg 330deg, green 330deg 338deg, gray 338deg 360deg);
-=======
 /* Ajustes adicionales para tamaños de pantalla pequeños */
 @media (max-width: 768px) {
     .carousel {
@@ -143,7 +42,6 @@ footer .container {
     .carousel-inner img {
         max-height: 300px;
     }
->>>>>>> locationsMisraim
 }
 
 /* Ajustes adicionales para tamaños de pantalla extra pequeños */
@@ -167,60 +65,7 @@ footer .container {
         max-height: 150px;
     }
 
-<<<<<<< HEAD
-.container-filter-checkbox-locations {
-    max-height: 150px;
-    overflow-y: auto;
-}
-
-.container-cards-locations {
-    max-height: 600px;
-    overflow-y: auto;
-}
-
-.card {
-    width: 280px;
-    height: 400px;
-}
-
-
-.modal-content {
-    position: relative;
-    overflow: hidden;
-    /* Estilos para el modal */
-  }
-  
-  .modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Filtro negro semi-transparente */
-    filter: blur(5px); /* Desenfoque */
-    z-index: 1;
-  }
-  
-  .modal-header {
-    position: relative;
-    z-index: 2; /* Asegura que el botón de cerrar esté por encima de la capa de superposición */
-  }
-  
-  .modal-body {
-    position: relative;
-    z-index: 2; /* Asegura que el contenido del modal esté por encima de la capa de superposición */
-  }
-
-.card-title {
-    text-shadow: 
-      1px 1px 2px rgba(0, 0, 0, 0.5),
-      2px 2px 4px rgba(0, 0, 0, 0.5),
-      3px 3px 6px rgba(0, 0, 0, 0.5);
-  }
-
-=======
     .navbar-brand-logo {
         height: 35px;
     }
 }
->>>>>>> locationsMisraim
