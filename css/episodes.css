@@ -73,3 +73,20 @@
     width: 100%;
     height: auto;
 }
+.sec1-video {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden; /* Para asegurar que el video no se desborde */
+}
+
+.video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+    z-index: -1; 
+}
