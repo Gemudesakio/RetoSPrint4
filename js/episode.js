@@ -92,6 +92,7 @@ const appEPisodios = createApp({
         },
         eliminarFavorito(favorito){
           this.favoritos.splice(favorito,1)
+          /* this.favoritesLocations = this.favoritesLocations.filter(fav => fav !== location); */
           localStorage.setItem('favortios', JSON.stringify(this.favoritos))
 
         }

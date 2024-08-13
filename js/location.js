@@ -18,7 +18,7 @@ const app = createApp({
             residents: [],
             filterText: "",
             filterDimension: [],
-            favoritesLocations: new Set(), // Almacena las ubicaciones favoritas
+            favoritesLocations: [], // Ubicaciones favoritas
             showFavoritesModal: false, // Controla la visibilidad del modal
             showLocationModal: false, // Controla la visibilidad del modal
 
@@ -72,6 +72,8 @@ const app = createApp({
         if (favoritesLocationsLocal) {
             this.favoritesLocations = favoritesLocationsLocal
         }
+
+        
     },
     methods: {
         async traerData(urlApi) {
@@ -135,6 +137,7 @@ const app = createApp({
 
         removeFavorite(location) {
             this.favoritesLocations = this.favoritesLocations.filter(fav => fav !== location);
+
             localStorage.setItem("favoritesLocations", JSON.stringify(this.favoritesLocations));
         },
 
