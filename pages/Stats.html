@@ -58,20 +58,110 @@
       <button type="button" class="btn btn-success h-25" @click="showStats('Episodes')">Episodes</button>
     </div>
     <div v-if="selectedStat === 'Characters'">
-      <div class="d-flex justify-content-start m-5">
-        <div>
-          <h1 class="text-white text-center" style="text-decoration: underline">Status</h1>
-          <div class="status"></div>
+      <div class="d-flex justify-content-between m-5">
+        <div id="graficoStatus">
+          <div>
+            <h1 class="text-white text-center fs-4" style="text-decoration: underline">Status</h1>
+            <div class="status"></div>
+          </div>
+          <div class="stats align-self-end ms-5 text-white">
+            <h3 style="text-decoration: underline;">Characters 826</h3>
+            <div style="color: green;">Alive 439</div>
+            <div style="color: red;">Dead 287</div>
+            <div style="color: gray;">unknown 100</div>
+          </div>
         </div>
-        <div class="stats align-self-end ms-5 text-white">
-          <h3 style="text-decoration: underline;">Characters 826</h3>
-          <div style="color: green;">Alive 439</div>
-          <div style="color: red;">Dead 287</div>
-          <div style="color: gray;">unknown 100</div>
+        <div>
+          <h4 class="text-white text-center">Species</h4>
+          <div id="graficoSpecies" class="d-flex justify-content-center flex-wrap gap-1">
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/Human.webp"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Humans - {{Humans.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/Animal.webp"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Animals - {{Animals.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/Alien.webp"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Aliens - {{Aliens.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/Poopybutthole.webp"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Poopybutthole - {{Poopybuttholes.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/Robot.webp"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Robots - {{Robots.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/Crononbergs.webp"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Cronenbergs - {{Cronenbergs.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/Disease.webp"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Diseases - {{Diseases.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/unknown.avif"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Unknowns - {{UnknownsS.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;"
+                src="../assets/imagenes/Mythological Creature.webp" class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Mythologicals - {{Mythologicals.length}}</h5>
+              </div>
+            </div>
+            <div class="card text-bg-dark">
+              <img style="height: 10rem; object-fit: cover; width: 10rem;" src="../assets/imagenes/Humanoid.webp"
+                class="card-img" alt="Humans">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Humanoids - {{Humanoids.length}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="graficoGender">
+          <div>
+            <h1 class="text-white text-center fs-4" style="text-decoration: underline">Gender</h1>
+            <div class="gender"></div>
+          </div>
+          <div class="stats align-self-end ms-5 text-white">
+            <h3 style="text-decoration: underline;">Characters 826</h3>
+            <div style="color: blue;">Male {{male.length}}</div>
+            <div style="color:pink;">Female {{female.length}}</div>
+            <div style="color: green;">Genderless {{genderless.length}}</div>
+            <div style="color: gray;">unknown {{UnknownsG.length}}</div>
+          </div>
         </div>
       </div>
       <div id="topTenC" class="d-flex justify-content-center">
-        <h3 class="text-white">Top 10 most relevant characters
+        <h3 class="text-warning">Top 10 most relevant characters
         </h3>
         <div class="d-flex justify-content-center flex-wrap gap-1 m-2" style="max-width: 98%;">
           <div v-for="character in topTenC" class="card" style="width: 7rem; height: 14rem;">
@@ -88,10 +178,12 @@
     <div v-if="selectedStat === 'Locations'">
       <div class="d-flex justify-content-around">
         <div class="d-flex justify-content-center">
-          <p class="text-danger text-center fs-4 bg-success-subtle border rounded px-2">The series takes place in a total of {{locations.length}} locations</p>
+          <p class="text-danger text-center fs-4 bg-success-subtle border rounded px-2">The series takes place in a
+            total of {{locations.length}} locations</p>
         </div>
         <div>
-          <p class="text-center fs-4 bg-success-subtle border rounded px-2 text-danger">There are {{typeLocations.length}} types of locations in the series</p>
+          <p class="text-center fs-4 bg-success-subtle border rounded px-2 text-danger">There are
+            {{typeLocations.length}} types of locations in the series</p>
         </div>
       </div>
       <div id="topTenL" class="d-flex justify-content-center mb-5">
@@ -137,8 +229,7 @@
         <h3 class="text-success">Top 10 chapters with the most characters
         </h3>
         <div class="d-flex justify-content-center flex-wrap gap-1 m-2">
-          <div v-for="(episode,index) in topTenE"
-            class="card text-bg-dark">
+          <div v-for="(episode,index) in topTenE" class="card text-bg-dark">
             <img :src="topTenEImage[index]" class="card-img" alt="..."
               style="width: 7rem; height: 10rem; object-fit: cover;">
             <div class="d-flex justify-content-center" style="flex-direction: column; max-width: 7rem;">

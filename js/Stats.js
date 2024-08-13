@@ -47,7 +47,7 @@ const app = createApp({
             topTenEImage: ["../assets/imagenes/epi1.webp", "../assets/imagenes/epi2.webp", "../assets/imagenes/epi3.webp", "../assets/imagenes/epi4.webp", "../assets/imagenes/epi5.webp", "../assets/imagenes/epi6.webp", "../assets/imagenes/epi7.webp", "../assets/imagenes/epi8.webp", "../assets/imagenes/epi9.webp", "../assets/imagenes/epi10.webp"],
 
 
-            selectedStat: "Episodes",
+            selectedStat: "Characters",
         }
     },
     created() {
@@ -78,6 +78,8 @@ const app = createApp({
                         this.topTenC = this.characters.sort((a, b) => b.episode.length - a.episode.length).slice(0, 10);
 
                         this.species = [...new Set(this.characters.map(character => character.species))];
+                        console.log(this.species);
+                        
                         this.Humans = this.characters.filter(character => character.species === "Human");
                         this.Aliens = this.characters.filter(character => character.species === "Alien");
                         this.Humanoids = this.characters.filter(character => character.species === "Humanoid");
@@ -90,10 +92,18 @@ const app = createApp({
                         this.Animals = this.characters.filter(character => character.species === "Animal");
 
                         this.gender = [...new Set(this.characters.map(character => character.gender))];
+                        console.log(this.gender);
+                        
                         this.male = this.characters.filter(character => character.gender === "Male");
+                        console.log(this.male.length);
                         this.female = this.characters.filter(character => character.gender === "Female");
+                        console.log(this.female);
+                        
                         this.genderless = this.characters.filter(character => character.gender === "Genderless");
+                        console.log(this.genderless.length);
                         this.UnknownsG = this.characters.filter(character => character.gender === "unknown");
+                        console.log(this.UnknownsG);
+                        
 
                     })
                         .catch(error => console.error(error));
