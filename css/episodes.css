@@ -56,9 +56,21 @@
     background-color: #38363670;
 }
 
+
 .card-img-container {
     position: relative;
+    width: 100%;
+    height: 250px; 
+    overflow: hidden; 
 }
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover; 
+}
+
 
 .btn-favoritos {
     position: absolute;
@@ -69,10 +81,6 @@
     padding: 0.5rem;
 }
 
-.card-img-top {
-    width: 100%;
-    height: auto;
-}
 .sec1-video {
     width: 100vw;
     height: 100vh;
