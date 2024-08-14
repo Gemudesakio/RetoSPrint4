@@ -7,8 +7,6 @@ const appCharacter = createApp({
       character: [],
       characterBk: [],
       info: {}, // Para manejar la información de paginación
-      favoritos:[]
-
     };
   },
   created() {
@@ -38,20 +36,6 @@ const appCharacter = createApp({
       }
     },
   },
-  agregarFavorito(favorito) {
-    if (!this.favoritos.includes(favorito)) {
-      this.favoritos.push(favorito)
-      localStorage.setItem('favortios', JSON.stringify(this.favoritos))
-      console.log(this.favoritos);
-    }
-
-
-  },
-  eliminarFavorito(favorito) {
-    this.favoritos.splice(favorito, 1)
-    /* this.favoritesLocations = this.favoritesLocations.filter(fav => fav !== location); */
-    localStorage.setItem('favortios', JSON.stringify(this.favoritos))
-
-  },
+  
   computed: {},
 }).mount("#appCharacters");
