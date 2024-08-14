@@ -9,9 +9,8 @@ const app = createApp({
         return {
             characters: [],
             topTenC: [],
-
             species: [],
-            speciesImage:["../assets/imagenes/Human.webp", "../assets/imagenes/Animal.webp", "../assets/imagenes/Alien.webp", "../assets/imagenes/Poopybutthole.webp", "../assets/imagenes/Humanoid.webp", "../assets/imagenes/Crononbergs.webp", "../assets/imagenes/Mythological Creature.webp", "../assets/imagenes/unknown.avif", "../assets/imagenes/Robot.webp", "../assets/imagenes/Disease.webp"],
+            speciesImage: ["../assets/imagenes/Human.webp", "../assets/imagenes/Animal.webp", "../assets/imagenes/Alien.webp", "../assets/imagenes/Poopybutthole.webp", "../assets/imagenes/Humanoid.webp", "../assets/imagenes/Crononbergs.webp", "../assets/imagenes/Mythological Creature.webp", "../assets/imagenes/unknown.avif", "../assets/imagenes/Robot.webp", "../assets/imagenes/Disease.webp"],
             Humans: [],
             Aliens: [],
             Humanoids: [],
@@ -22,8 +21,7 @@ const app = createApp({
             UnknownsS: [],
             Mythologicals: [],
             Animals: [],
-            totales:[],
-
+            totales: [],
             gender: [],
             male: [],
             female: [],
@@ -47,7 +45,6 @@ const app = createApp({
             season5: [],
             topTenE: [],
             topTenEImage: ["../assets/imagenes/epi1.webp", "../assets/imagenes/epi2.webp", "../assets/imagenes/epi3.webp", "../assets/imagenes/epi4.webp", "../assets/imagenes/epi5.webp", "../assets/imagenes/epi6.webp", "../assets/imagenes/epi7.webp", "../assets/imagenes/epi8.webp", "../assets/imagenes/epi9.webp", "../assets/imagenes/epi10.webp"],
-
 
             selectedStat: "Characters",
         }
@@ -75,14 +72,10 @@ const app = createApp({
                         currentPage++;
                         requests.push(request);
                     }
-
                     Promise.all(requests).then(() => {
                         this.topTenC = this.characters.sort((a, b) => b.episode.length - a.episode.length).slice(0, 10);
-
                         this.species = [...new Set(this.characters.map(character => character.species))];
-                        console.log(this.species);
-                        
-                        this.Humans = this.characters.filter(character => character.species === "Human");                        
+                        this.Humans = this.characters.filter(character => character.species === "Human");
                         this.Aliens = this.characters.filter(character => character.species === "Alien");
                         this.Humanoids = this.characters.filter(character => character.species === "Humanoid");
                         this.Poopybuttholes = this.characters.filter(character => character.species === "Poopybutthole");
@@ -93,21 +86,11 @@ const app = createApp({
                         this.Mythologicals = this.characters.filter(character => character.species === "Mythological Creature");
                         this.Animals = this.characters.filter(character => character.species === "Animal");
                         this.totales = [this.Humans.length, this.Animals.length, this.Aliens.length, this.Poopybuttholes.length, this.Humanoids.length, this.Cronenbergs.length, this.Mythologicals.length, this.UnknownsS.length, this.Robots.length, this.Diseases.length];
-                        
                         this.gender = [...new Set(this.characters.map(character => character.gender))];
-                        console.log(this.gender);
-                        
                         this.male = this.characters.filter(character => character.gender === "Male");
-                        console.log(this.male.length);
                         this.female = this.characters.filter(character => character.gender === "Female");
-                        console.log(this.female);
-                        
                         this.genderless = this.characters.filter(character => character.gender === "Genderless");
-                        console.log(this.genderless.length);
                         this.UnknownsG = this.characters.filter(character => character.gender === "unknown");
-                        console.log(this.UnknownsG);
-                        
-
                     })
                         .catch(error => console.error(error));
                 })
@@ -120,7 +103,6 @@ const app = createApp({
                     let currentPage = 1;
                     let totalPages = data.info.pages;
                     let requests = [];
-
                     while (currentPage <= totalPages) {
                         let request = fetch(`${url}?page=${currentPage}`)
                             .then(response => response.json())
@@ -133,16 +115,13 @@ const app = createApp({
                     }
                     Promise.all(requests).then(() => {
                         this.typeLocations = [...new Set(this.locations.map(location => location.type))];
-
                         this.topTenL = this.locations.sort((a, b) => b.residents.length - a.residents.length).slice(0, 10);
-
                         if (this.topTenL.length > 0) {
                             this.setResidents(this.topTenL[0]);
                         }
                     });
                 })
                 .catch(error => console.error(error));
-
         },
         traerEpisodes(url) {
             fetch(url)
@@ -164,20 +143,15 @@ const app = createApp({
                     Promise.all(requests).then(() => {
                         this.seasons = this.episodes.map(episode => episode.episode.slice(0, 3));
                         this.seasons = [...new Set(this.seasons)];
-                        console.log(this.seasons);
-                        console.log(this.episodes);
-                        this.season1 = this.episodes.filter(episode => episode.episode.slice(0, 3) === "S01");                        
+                        this.season1 = this.episodes.filter(episode => episode.episode.slice(0, 3) === "S01");
                         this.season2 = this.episodes.filter(episode => episode.episode.slice(0, 3) === "S02");
                         this.season3 = this.episodes.filter(episode => episode.episode.slice(0, 3) === "S03");
                         this.season4 = this.episodes.filter(episode => episode.episode.slice(0, 3) === "S04");
                         this.season5 = this.episodes.filter(episode => episode.episode.slice(0, 3) === "S05");
                         this.topTenE = this.episodes.sort((a, b) => b.characters.length - a.characters.length).slice(0, 10);
-                        console.log(this.topTenE);
                     });
                 })
                 .catch(error => console.error(error));
-            console.log(this.episodes);
-
         },
         showStats(stat) {
             this.selectedStat = stat;
@@ -186,7 +160,7 @@ const app = createApp({
             this.currentResidents = this.characters.filter(character => location.residents.includes(character.url));
             this.currentLocationName = location.name;
         },
-        handleMouseOver(location) {
+        showResidents(location) {
             this.setResidents(location);
         }
     },

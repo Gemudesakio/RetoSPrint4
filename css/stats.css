@@ -4,17 +4,6 @@
     box-sizing: border-box;
 }
 
-
-
-header {
-    height: 50px;
-}
-
-.container-fluid {
-max-height: 50px;
-}
-
-
 .btn {
     width: auto;
 }
