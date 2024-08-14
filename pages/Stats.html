@@ -19,22 +19,20 @@
 </head>
 
 <body>
-  
-  
   <!--Header-->
   <header class="sticky-top">
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-success-subtle h-100 p-0">
+      <div class="container-fluid m-0 p-0 d-flex justify-content-between">
 
-        <a class="navbar-brand mx-5" href="../index.html">
+        <a class="navbar-brand mx-5 p-0 text-start ms-2" href="../index.html">
           <img id="logo" class="navbar-brand-logo"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/800px-Rick_and_Morty.svg.png"
             alt="LOGO">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -64,38 +62,28 @@
   </header>
 
   <main id="app">
-    <div class="container-page">
       <div class="d-flex justify-content-center flex-wrap align-items-center gap-1 p-2">
-        <button 
-          type="button" 
-          class="btn h-25 p-1 m-2"
-          :class="{'btn-success': selectedStat !== 'Characters', 'btn-primary': selectedStat === 'Characters'}"
-          @click="showStats('Characters')"
-        >
+        <button type="button" class="btn h-25 p-1 m-2"
+          :class="{'btn-success': selectedStat !== 'Characters', 'btn-warning': selectedStat === 'Characters'}"
+          @click="showStats('Characters')">
           Characters
         </button>
-        <button 
-          type="button" 
-          class="btn h-25 p-1 m-2"
-          :class="{'btn-success': selectedStat !== 'Locations', 'btn-primary': selectedStat === 'Locations'}"
-          @click="showStats('Locations')"
-        >
+        <button type="button" class="btn h-25 p-1 m-2"
+          :class="{'btn-success': selectedStat !== 'Locations', 'btn-warning': selectedStat === 'Locations'}"
+          @click="showStats('Locations')">
           Locations
         </button>
-        <button 
-          type="button" 
-          class="btn h-25 p-1 m-2"
-          :class="{'btn-success': selectedStat !== 'Episodes', 'btn-primary': selectedStat === 'Episodes'}"
-          @click="showStats('Episodes')"
-        >
+        <button type="button" class="btn h-25 p-1 m-2"
+          :class="{'btn-success': selectedStat !== 'Episodes', 'btn-warning': selectedStat === 'Episodes'}"
+          @click="showStats('Episodes')">
           Episodes
         </button>
       </div>
       <div v-if="selectedStat === 'Characters'" class="d-flex justify-content-start" style="flex-direction: column;">
         <div class="d-flex justify-content-around flex-wrap">
-          <div id="graficoStatus" class="d-flex align-items-center gap-2" style="flex-direction: column; width: 15rem;">
+          <div id="graficoStatus" class="d-flex align-items-center gap-2 border border-success-subtle rounded" style="flex-direction: column; width: 15rem;">
             <div class="d-flex text-center gap-1" style="flex-direction: column;">
-              <h1 class="text-warning text-center fs-4" style="text-decoration: underline">Status</h1>
+              <h1 class="text-primary text-center fs-4" style="text-decoration: underline">Status</h1>
               <div class="status m-1"></div>
             </div>
             <div class="d-flex stats text-white" style="flex-direction: column;">
@@ -104,40 +92,37 @@
               <div style="color: gray;">unknown 100</div>
             </div>
           </div>
-          <div class="d-flex flex-wrap" style="flex-direction: column; width: 100%; max-width: 30rem;">
-            <h4 class="text-warning text-center text-decoration-underline">Species</h4>
-            <div id="graficoSpecies" class="d-flex justify-content-center flex-wrap gap-1 table-responsive"
-              style="height: 370px; overflow-y: auto;">
-              <div class="table-responsive w-100">
-                <table class="table table-bordered border-primary">
-                  <thead>
-                    <tr class="table-warning">
-                      <th scope="col">#</th>
-                      <th scope="col">Specie</th>
-                      <th scope="col">Image</th>
-                      <th scope="col">Quantity</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(specie, index) in species">
-                      <td class="text-center align-content-center table-success">{{ index + 1 }}</td>
-                      <td class="text-center align-content-center table-success">{{ specie }}</td>
-                      <td class="d-flex justify-content-center table-success">
-                        <img :src="speciesImage[index]" alt="specie image" class="img-fluid"
-                          style="max-width: 100px; height: auto; object-fit: cover;" id="imgSpecieTable">
-                      </td>
-                      <td class="text-center align-content-center table-success">
-                        {{ totales[index] }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          <div id="graficoSpecies" class="d-flex flex-wrap w-100 border border-success-subtle rounded my-1" style="flex-direction: column; max-width: 40rem;">
+            <h4 class="text-primary text-center text-decoration-underline">Species {{characters.length}}</h4>
+            <div class="container table-responsive w-100 p-0" style="max-height: 350px; max-width: 98%;">
+              <table class="table table-bordered border-primary w-100">
+                <thead>
+                  <tr class="table-primary">
+                    <th>#</th>
+                    <th>Specie</th>
+                    <th>Image</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(specie, index) in species">
+                    <td class="text-center align-content-center table-success">{{ index + 1 }}</td>
+                    <td class="text-center align-content-center table-success">{{ specie }}</td>
+                    <td class="d-flex justify-content-center table-success">
+                      <img :src="speciesImage[index]" alt="specie image" class="img-fluid"
+                        style="max-width: 100px; height: auto; object-fit: cover;" id="imgSpecieTable">
+                    </td>
+                    <td class="text-center align-content-center table-success">
+                      {{ totales[index] }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div id="graficoGender" class="d-flex align-items-center gap-2" style="flex-direction: column; width: 15rem;">
+          <div id="graficoGender" class="d-flex align-items-center gap-2 border border-success-subtle rounded" style="flex-direction: column; width: 15rem;">
             <div class="d-flex text-center gap-1" style="flex-direction: column;">
-              <h1 class="text-warning text-center fs-4" style="text-decoration: underline">Gender</h1>
+              <h1 class="text-primary text-center fs-4" style="text-decoration: underline">Gender</h1>
               <div class="gender m-1"></div>
             </div>
             <div class="d-flex stats text-white" style="flex-direction: column;">
@@ -156,7 +141,7 @@
               <img :src="character.image" class="card-img-top" alt="character.name">
               <div class="card-body p-2 bg-success-subtle">
                 <p class="card-text text-center fw-semibold">#{{topTenC.indexOf(character)+1}}
-                  <br>{{character.episode.length}} Epis. <br>{{character.name}}
+                  <br>{{character.episode.length}} Eps. <br>{{character.name}}
                 </p>
               </div>
             </div>
@@ -166,16 +151,16 @@
       <div v-if="selectedStat === 'Locations'">
         <div class="d-flex justify-content-around">
           <div class="d-flex justify-content-center">
-            <p class="text-info text-center fs-4 bg-success border rounded px-2">The series takes place in a
+            <p class="text-info text-center fs-4 bg-success border rounded px-2 mx-1">The series takes place in a
               total of {{locations.length}} locations</p>
           </div>
           <div>
-            <p class="text-center fs-4 bg-success border rounded px-2 text-info">There are
+            <p class="text-info text-center fs-4 bg-success border rounded px-2 mx-1">There are
               {{typeLocations.length}} types of locations in the series</p>
           </div>
         </div>
         <div id="topTenL" class="d-flex justify-content-center mb-3">
-          <h3 class="text-warning">Top 10 locations with the most residents
+          <h3 class="text-warning bg-success align-self-center border rounded p-1">Top 10 locations with the most residents
           </h3>
           <div class="d-flex justify-content-center flex-wrap gap-1 m-2">
             <div v-for="(location,index) in topTenL" :key="location.id" @click="handleMouseOver(location)"
@@ -189,7 +174,7 @@
           </div>
         </div>
         <div id="residents" class="d-flex justify-content-center">
-          <h3 class="text-warning">Residents of the {{currentLocationName}} - {{currentResidents.length}}
+          <h3 class="text-warning bg-success align-self-center border rounded p-1">Residents of the {{currentLocationName}} - {{currentResidents.length}}
           </h3>
           <div class="d-flex justify-content-center flex-wrap gap-1 m-2" style="max-width: 98%;">
             <div v-for="resident in currentResidents" class="card text-bg-dark" style="width: 5rem; overflow: hidden;">
@@ -205,16 +190,16 @@
         <div class="text-center fs-5" style="flex-direction: column;">
           <p class="text-danger bg-success-subtle">Premiere: {{season1[0].air_date}} - {{season1[0].name }}</p>
           <ol style="list-style-type: none">
-            <h4 class="text-warning">Seasons</h4>
-            <li class="text-warning">Season 1: {{season1.length}} chapters.</li>
-            <li class="text-warning">Season 2: {{season2.length}} chapters.</li>
-            <li class="text-warning">Season 3: {{season3.length}} chapters.</li>
-            <li class="text-warning">Season 4: {{season4.length}} chapters.</li>
-            <li class="text-warning">Season 5: {{season5.length}} chapters.</li>
+            <h4 class="text-danger fs-4 fw-bold">Seasons</h4>
+            <li class="text-danger fs-4 fw-bold">Season 1: {{season1.length}} chapters.</li>
+            <li class="text-danger fs-4 fw-bold">Season 2: {{season2.length}} chapters.</li>
+            <li class="text-danger fs-4 fw-bold">Season 3: {{season3.length}} chapters.</li>
+            <li class="text-danger fs-4 fw-bold">Season 4: {{season4.length}} chapters.</li>
+            <li class="text-danger fs-4 fw-bold">Season 5: {{season5.length}} chapters.</li>
           </ol>
         </div>
         <div id="topTenL" class="d-flex justify-content-center mb-5">
-          <h3 class="text-warning">Top 10 chapters with the most characters
+          <h3 class="text-warning bg-success align-self-center border rounded p-1">Top 10 chapters with the most characters
           </h3>
           <div class="d-flex justify-content-center flex-wrap gap-1 m-2">
             <div v-for="(episode,index) in topTenE" class="card text-bg-dark">
@@ -229,10 +214,6 @@
           </div>
         </div>
       </div>
-
-    </div>
-
-
 
   </main>
 

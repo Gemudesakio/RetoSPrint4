@@ -1,3 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(https://wallpapercave.com/wp/wp6507378.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    height: 50px;
+}
+
+.container-fluid {
+max-height: 50px;
+}
+
+
 .btn {
     width: auto;
 }
@@ -22,12 +43,13 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
 }
-#imgSpecieTable{
+
+#imgSpecieTable {
     transition: transform 0.3s ease;
     border-radius: 5%;
 }
 
-#imgSpecieTable:hover{
+#imgSpecieTable:hover {
     transform: scale(1.5);
 }
 
@@ -47,4 +69,8 @@
 
 .card:hover {
     transform: scale(1.2);
+}
+
+#graficoStatus, #graficoGender, #graficoSpecies {
+    background-color: #E0E5B6;
 }

@@ -82,7 +82,7 @@ const app = createApp({
                         this.species = [...new Set(this.characters.map(character => character.species))];
                         console.log(this.species);
                         
-                        this.Humans = this.characters.filter(character => character.species === "Human");
+                        this.Humans = this.characters.filter(character => character.species === "Human");                        
                         this.Aliens = this.characters.filter(character => character.species === "Alien");
                         this.Humanoids = this.characters.filter(character => character.species === "Humanoid");
                         this.Poopybuttholes = this.characters.filter(character => character.species === "Poopybutthole");
@@ -90,7 +90,7 @@ const app = createApp({
                         this.Cronenbergs = this.characters.filter(character => character.species === "Cronenberg");
                         this.Diseases = this.characters.filter(character => character.species === "Disease");
                         this.UnknownsS = this.characters.filter(character => character.species === "unknown");
-                        this.Mythologicals = this.characters.filter(character => character.species === "Mythological");
+                        this.Mythologicals = this.characters.filter(character => character.species === "Mythological Creature");
                         this.Animals = this.characters.filter(character => character.species === "Animal");
                         this.totales = [this.Humans.length, this.Animals.length, this.Aliens.length, this.Poopybuttholes.length, this.Humanoids.length, this.Cronenbergs.length, this.Mythologicals.length, this.UnknownsS.length, this.Robots.length, this.Diseases.length];
                         
