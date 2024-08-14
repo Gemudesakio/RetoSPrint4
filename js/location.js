@@ -184,6 +184,3 @@ const app = createApp({
           }
     }
 }).mount("#app");
-
-//mostrar locationsImages
-console.log(app.locationsImages);
