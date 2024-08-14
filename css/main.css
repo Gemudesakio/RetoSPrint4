@@ -6,6 +6,17 @@
     box-sizing: border-box;
 }
 
+:root {
+    --kiwi-green: #88e23b;
+    --texas: #ebe480;
+    --tardis-blue: #043c6e;
+    --endo: #60a85f;
+    --mystery: #a6cccc;
+    --calla-green: #6b7132;
+    --white: #fff;
+    --black: #000;
+}
+
 header {
     -webkit-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
     -moz-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
@@ -20,6 +31,17 @@ main {
     height: 40px;
 }
 
+.nav-item :hover {
+    color: var(--mystery);
+    background-color: var(--black);
+}
+
+.nav-link-active{
+    color: var(--kiwi-green);
+    font-size: large;
+    font-weight: bold;
+
+}
 
 /* Estilo para el contenedor del carrusel */
 .carousel {
@@ -37,7 +59,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
+    background: linear-gradient(to top right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1));
     z-index: 1;
 }
 
@@ -64,8 +86,14 @@ main {
 
 /* Estilo del título del banner */
 .banner-tittle {
-    font-size: 2rem; /* Ajusta el tamaño según sea necesario */
+    font-size: 3rem; /* Ajusta el tamaño según sea necesario */
     font-weight: 500;
+}
+
+.banner-subtittle {
+    font-size: 1.5rem; /* Ajusta el tamaño según sea necesario */
+    font-weight: 400;
+    color: var(--mystery);
 }
 
 /* Estilo del texto del banner */
@@ -73,8 +101,41 @@ main {
     font-size: 1rem; /* Ajusta el tamaño según sea necesario */
     font-weight: 400;
     overflow-x: auto; /* Asegura que el texto largo sea desplazable si es necesario */
-    max-width: 600px;
-    color: #97ce4c;
+    max-width: 700px;
+    color: var(--texas); /* Asegúrate de que el texto sea verde */
+}
+
+
+/* Estilos para la sección de bienvenida */
+.welcome-section {
+    background-color: var(--mystery);
+    color: #fff;
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.welcome-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.list-unstyled {
+    margin: 0;
+    padding: 0;
+}
+
+.list-unstyled li {
+    margin-bottom: 0.5rem;
+}
+
+.welcome-image {
+    max-width: 80%; /* Ajusta según sea necesario */
+    height: auto;
+    border-radius: 8px; /* Opcional, para bordes redondeados */
 }
 
 
