@@ -1,4 +1,3 @@
-
 /* Estilos generales de la maqueta base no integrar estilos en esta hoja*/
 * {
     margin: 0;
@@ -36,110 +35,48 @@ main {
     background-color: var(--black);
 }
 
-.nav-link-active{
+.nav-link-active {
     color: var(--kiwi-green);
     font-size: large;
     font-weight: bold;
 
 }
 
-/* Estilo para el contenedor del carrusel */
-.carousel {
-    height: 500px;
+
+footer {
+    background-image: url(https://e0.pxfuel.com/wallpapers/873/692/desktop-wallpaper-interdimensional-rss-the-rick-and-morty-podcast-rick-and-morty-universe.jpg);
+    background-size: cover;
 }
 
-.carousel-item {
-    position: relative;
+.logo-footer {
+    max-width: 150px;
 }
 
-.carousel-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1));
-    z-index: 1;
-}
-
-.carousel-inner img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    max-height: 500px;
-    position: relative;
-    z-index: 0; /* Asegúrate de que la imagen esté detrás del filtro */
-}
-
-/* Estilo de la caption */
-.carousel-caption {
-    position: absolute;
-    bottom: 5%;
-    left: 10%; /* Ajusta según sea necesario */
-    transform: none; /* Quita la transformación para el texto */
-    z-index: 2;
-    /* Limita el ancho del texto */
-    color: #fff; /* Asegúrate de que el texto sea blanco */
-    text-align: left; /* Justifica el texto a la izquierda */
-}
-
-/* Estilo del título del banner */
-.banner-tittle {
-    font-size: 3rem; /* Ajusta el tamaño según sea necesario */
-    font-weight: 500;
-}
-
-.banner-subtittle {
-    font-size: 1.5rem; /* Ajusta el tamaño según sea necesario */
-    font-weight: 400;
-    color: var(--mystery);
-}
-
-/* Estilo del texto del banner */
-.banner-text {
-    font-size: 1rem; /* Ajusta el tamaño según sea necesario */
-    font-weight: 400;
-    overflow-x: auto; /* Asegura que el texto largo sea desplazable si es necesario */
-    max-width: 700px;
-    color: var(--texas); /* Asegúrate de que el texto sea verde */
-}
-
-
-/* Estilos para la sección de bienvenida */
-.welcome-section {
-    background-color: var(--mystery);
-    color: #fff;
-}
-
-.welcome-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.welcome-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-.list-unstyled {
-    margin: 0;
-    padding: 0;
-}
-
-.list-unstyled li {
-    margin-bottom: 0.5rem;
-}
-
-.welcome-image {
-    max-width: 80%; /* Ajusta según sea necesario */
-    height: auto;
-    border-radius: 8px; /* Opcional, para bordes redondeados */
-}
-
-
-
+.footer-note {
+    display: block;
+    font-size: 0.875rem; /* Tamaño de fuente más pequeño para el texto */
+    color: var(--black); /* Color blanco claro */
+    background-color: var(--mystery); /* Fondo oscuro para el contraste */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center; /* Alineación centrada */
+    font-style: italic; /* Cursiva para el texto */
+    margin-top: 20px; /* Espacio superior */
+  }
+  
+  .footer-note .copyright-symbol {
+    font-size: 1.2rem; /* Tamaño de fuente mayor para el símbolo */
+    color: var(--tardis-blue); /* Color verde para el símbolo */
+    font-weight: bold; /* Negrita para el símbolo */
+    margin-right: 5px; /* Espacio a la derecha del símbolo */
+  }
+  
+  .footer-note strong {
+    color: var(--tardis-blue); /* Color azul para destacar el texto importante */
+    font-weight: bold; /* Negrita para el texto importante */
+  }
+  
+    
 
 /* Ajustes adicionales para tamaños de pantalla pequeños */
 @media (max-width: 768px) {
