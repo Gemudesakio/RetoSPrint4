@@ -6,14 +6,13 @@ const appEPisodios = createApp({
         return {
             episodes: [],
             episodesBK: [],
-            allEpisodes: [],
             selectedEpisode: null,
             characters: [],
             info: {},
             textoBuscador: "",
             temporadas: [],
             temporadaSeleccionada: "",
-            favoritos:[]
+            favoritos: []
         }
     },
     created() {
@@ -22,7 +21,6 @@ const appEPisodios = createApp({
         if(dataLocal){
             this.favoritos = dataLocal
         }
-        
     },
     methods: {
         traerData(url) {
@@ -31,7 +29,6 @@ const appEPisodios = createApp({
                 .then(data => {
                     this.episodes = data.results
                     this.episodesBK = data.results
-                    this.allEpisodes = [...this.allEpisodes, ...data.results]
                     this.info = data.info
                     this.categorias()
                 })
@@ -59,60 +56,41 @@ const appEPisodios = createApp({
                 this.traerData(this.info.prev)
             }
         },
-        categorias() {
-            let categorias = [...new Set(this.allEpisodes.map(episode => {
-                let seasonNumber = episode.episode.split('E')[0].replace('S', '')
-                return seasonNumber
-            }))]
-            this.temporadas = categorias
-        },
         filterButton(season) {
             this.temporadaSeleccionada = season
-            this.updateEpisodes()
         },
         resetFilter() {
             this.temporadaSeleccionada = ""
-            this.updateEpisodes()
         },
-        updateEpisodes() {
-            let filtered = this.episodesBK
-            if (this.temporadaSeleccionada) {
-                filtered = filtered.filter(episodio => episodio.episode.includes(this.temporadaSeleccionada))
-            }
-            this.episodes = filtered
-        },
-        agregarFavorito(favorito){
-            if(!this.favoritos.includes(favorito)){
+        agregarFavorito(favorito) {
+            if (!this.favoritos.includes(favorito)) {
                 this.favoritos.push(favorito)
                 localStorage.setItem('favortios', JSON.stringify(this.favoritos))
-                console.log(this.favoritos);
+                console.log(this.favoritos)
             }
-          
-            
         },
-        eliminarFavorito(favorito){
-          this.favoritos.splice(favorito,1)
-          /* this.favoritesLocations = this.favoritesLocations.filter(fav => fav !== location); */
-          localStorage.setItem('favortios', JSON.stringify(this.favoritos))
-
+        eliminarFavorito(favorito) {
+            this.favoritos.splice(favorito, 1)
+            localStorage.setItem('favortios', JSON.stringify(this.favoritos))
         }
     },
     computed: {
         filteredEpisodes() {
-            if (this.textoBuscador.trim() === "") {
-                return this.episodes
+            let filtered = this.episodesBK
+
+            if (this.temporadaSeleccionada) {
+                filtered = filtered.filter(episodio =>
+                    episodio.episode.includes(this.temporadaSeleccionada)
+                )
             }
-            return this.episodes.filter(episode =>
-                episode.name.toLowerCase().includes(this.textoBuscador.toLowerCase())
-            )
-        }
-    },
-    watch: {
-        textoBuscador() {
-          
-        },
-        temporadaSeleccionada() {
-            this.updateEpisodes()
+
+            if (this.textoBuscador.trim() !== "") {
+                filtered = filtered.filter(episode =>
+                    episode.name.toLowerCase().includes(this.textoBuscador.toLowerCase())
+                )
+            }
+
+            return filtered
         }
     }
 }).mount('#appEpisodios')

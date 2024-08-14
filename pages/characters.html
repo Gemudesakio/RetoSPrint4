@@ -67,8 +67,19 @@
   </header>
 
   <main id="appCharacters">
+    <section class="sec2 mt-5 mb-5 d-flex flex-column justify-content-center">
+      <h1 class="my-4 text-center text-white">Rick and Morty Characters</h1>
+      <form class="row mt-3 mb-3 container m-auto" role="search">
+        <input v-model="textoBuscador" class="form-control me-2 col-12" type="search" placeholder="Search"
+          aria-label="Search" id="textSearch">
+      </form>
+      <div class="d-flex justify-content-center flex-wrap gap-3">
+        <button @click="filterButton('Alive')" type="button" class="btn btn-warning">Alive</button>
+        <button @click="filterButton('Dead')" type="button" class="btn btn-warning">Dead</button>
+        <button @click="filterButton('unknown')" type="button" class="btn btn-warning">Unknown</button>
+        <button @click="resetFilter" type="button" class="btn btn-secondary">Reset filter</button>
+      </div>
 
-    <section class="sec3">
       <div class="m-3 d-flex justify-content-center">
         <!-- Button lanzador modal Characters -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
@@ -87,7 +98,7 @@
               <div class="modal-body">
                 <div v-for="favorito in favoritosCharacters" :key="favorito.id" class="card mb-3">
                   <div class="card-img-container">
-                    <button class="btn btn-danger btn-Characters" @click="eliminarFavorito(favorito)">
+                    <button class="btn btn-danger btn-favoritos" @click="eliminarFavorito(favorito)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-trash" viewBox="0 0 16 16">
                         <path
@@ -97,23 +108,23 @@
                       </svg>
                     </button>
                     <img :src="favorito.image || '../assets/imagenes/prueba.jpg'" class="card-img-top"
-                      alt="favorito Image">
+                      alt="Character Image">
                   </div>
                   <div class="card-body d-flex flex-column align-items-center gap-2">
                     <h2 class="card-title fw-bold text-white text-center">{{favorito.name}}</h2>
                     <p class="card-text fw-bold text-white text-center">
                       {{ favorito.name }} is a character in the series. Their status is {{ favorito.status.toLowerCase() }}, 
-                they belong to the {{ favorito.species.toLowerCase() }} species, their gender is {{ favorito.gender.toLowerCase() }}, 
-                and their origin is {{ favorito.origin.name }}.
+                      they belong to the {{ favorito.species.toLowerCase() }} species, their gender is {{ favorito.gender.toLowerCase() }}, 
+                      and their origin is {{ favorito.origin.name }}.
                     </p>
                     <div class="bar">
                       <div class="emptybar"></div>
                       <div class="filledbar"></div>
                     </div>
-                    <button class="btn btn-primary" @click="fetchCharacters(favorito)" data-bs-toggle="modal"
-                      data-bs-target="#charactersModal">
-                      View Char
-                    </button>
+                    <a :href="'./details.html?id='+favorito.id" class="btn btn-primary">
+                      View more details
+                    </a>
+                    
                   </div>
                 </div>
               </div>
@@ -123,16 +134,18 @@
             </div>
           </div>
         </div>
-
       </div>
+    </section>
+
+    <section class="sec3">
       <div class="container-fluid">
         <div class="container d-flex flex-wrap justify-content-center">
-          <div v-if="character.length === 0">
+          <div v-if="filteredCharacters.length === 0">
             <p class="fw-bold text-white">No se encontraron resultados</p>
           </div>
-          <div v-for="char in character" :key="char.id" class="card">
+          <div v-for="char in filteredCharacters" :key="char.id" class="card">
             <div class="card-img-container">
-              <button class="btn btn-warning btn-Characters" @click="agregarFavorito(char)">
+              <button class="btn btn-warning btn-favoritos" @click="agregarFavorito(char)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
                   viewBox="0 0 16 16">
                   <path
@@ -148,7 +161,6 @@
                 they belong to the {{ char.species.toLowerCase() }} species, their gender is {{ char.gender.toLowerCase() }}, 
                 and their origin is {{ char.origin.name }}.
             </p>
-            
               <div class="bar">
                 <div class="emptybar"></div>
                 <div class="filledbar"></div>
@@ -164,9 +176,7 @@
           <button class="btn btn-primary" @click="nextPage" :disabled="!info.next">Next</button>
         </div>
       </div>
-      
     </section>
-    
   </main>
 
   <footer class="bg-dark text-white p-3 mt-3">
