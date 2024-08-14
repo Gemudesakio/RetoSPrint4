@@ -70,12 +70,12 @@
 
     <section class="sec3">
       <div class="m-3 d-flex justify-content-center">
-        <!-- Button lanzador modal favoritos -->
+        <!-- Button lanzador modal Characters -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
           View Favorites
         </button>
 
-        <!-- Modal Favoritos -->
+        <!-- Modal Characters -->
         <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -85,9 +85,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <div v-for="favorito in favoritos" :key="favorito.id" class="card mb-3">
+                <div v-for="favorito in favoritosCharacters" :key="favorito.id" class="card mb-3">
                   <div class="card-img-container">
-                    <button class="btn btn-danger btn-favoritos" @click="eliminarFavorito(favorito)">
+                    <button class="btn btn-danger btn-Characters" @click="eliminarFavorito(favorito)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-trash" viewBox="0 0 16 16">
                         <path
@@ -112,7 +112,7 @@
                     </div>
                     <button class="btn btn-primary" @click="fetchCharacters(favorito)" data-bs-toggle="modal"
                       data-bs-target="#charactersModal">
-                      View Characters
+                      View Char
                     </button>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
           </div>
           <div v-for="char in character" :key="char.id" class="card">
             <div class="card-img-container">
-              <button class="btn btn-warning btn-favoritos" @click="agregarFavorito(char)">
+              <button class="btn btn-warning btn-Characters" @click="agregarFavorito(char)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
                   viewBox="0 0 16 16">
                   <path

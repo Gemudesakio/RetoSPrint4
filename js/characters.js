@@ -7,7 +7,7 @@ const appCharacter = createApp({
       character: [],
       characterBk: [],
       info: {}, // Para manejar la información de paginación
-      favoritos: [],
+      favoritosCharacters: [],
     };
   },
   created() {
@@ -37,18 +37,18 @@ const appCharacter = createApp({
       }
     },
     agregarFavorito(favorito){
-      if(!this.favoritos.includes(favorito)){
-          this.favoritos.push(favorito)
-          localStorage.setItem('favortios', JSON.stringify(this.favoritos))
-          console.log(this.favoritos);
+      if(!this.favoritosCharacters.includes(favorito)){
+          this.favoritosCharacters.push(favorito)
+          localStorage.setItem('favoritosCharacters', JSON.stringify(this.favoritosCharacters))
+          console.log(this.favoritosCharacters);
       }
     
       
   },
   eliminarFavorito(favorito){
-    this.favoritos.splice(favorito,1)
+    this.favoritosCharacters.splice(favorito,1)
     /* this.favoritesLocations = this.favoritesLocations.filter(fav => fav !== location); */
-    localStorage.setItem('favortios', JSON.stringify(this.favoritos))
+    localStorage.setItem('favoritosCharacters', JSON.stringify(this.favoritosCharacters))
 
   }
   },
