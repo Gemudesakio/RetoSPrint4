@@ -23,16 +23,61 @@ main {
 
 /* Estilo para el contenedor del carrusel */
 .carousel {
-    height: 350px;
+    height: 500px;
 }
 
-/* Ajuste responsivo para el carrusel */
+.carousel-item {
+    position: relative;
+}
+
+.carousel-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+
 .carousel-inner img {
     width: 100%;
-    height: 350px;
+    height: 500px;
     object-fit: cover;
     max-height: 500px;
+    position: relative;
+    z-index: 0; /* Asegúrate de que la imagen esté detrás del filtro */
 }
+
+/* Estilo de la caption */
+.carousel-caption {
+    position: absolute;
+    bottom: 5%;
+    left: 10%; /* Ajusta según sea necesario */
+    transform: none; /* Quita la transformación para el texto */
+    z-index: 2;
+    /* Limita el ancho del texto */
+    color: #fff; /* Asegúrate de que el texto sea blanco */
+    text-align: left; /* Justifica el texto a la izquierda */
+}
+
+/* Estilo del título del banner */
+.banner-tittle {
+    font-size: 2rem; /* Ajusta el tamaño según sea necesario */
+    font-weight: 500;
+}
+
+/* Estilo del texto del banner */
+.banner-text {
+    font-size: 1rem; /* Ajusta el tamaño según sea necesario */
+    font-weight: 400;
+    overflow-x: auto; /* Asegura que el texto largo sea desplazable si es necesario */
+    max-width: 600px;
+    color: #97ce4c;
+}
+
+
 
 
 /* Ajustes adicionales para tamaños de pantalla pequeños */
