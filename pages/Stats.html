@@ -65,11 +65,31 @@
 
   <main id="app">
     <div class="container-page">
-
       <div class="d-flex justify-content-center flex-wrap align-items-center gap-1 p-2">
-        <button type="button" class="btn btn-success h-25 p-1 m-2" @click="showStats('Characters')">Characters</button>
-        <button type="button" class="btn btn-success h-25 p-1 m-2" @click="showStats('Locations')">Locations</button>
-        <button type="button" class="btn btn-success h-25 p-1 m-2" @click="showStats('Episodes')">Episodes</button>
+        <button 
+          type="button" 
+          class="btn h-25 p-1 m-2"
+          :class="{'btn-success': selectedStat !== 'Characters', 'btn-primary': selectedStat === 'Characters'}"
+          @click="showStats('Characters')"
+        >
+          Characters
+        </button>
+        <button 
+          type="button" 
+          class="btn h-25 p-1 m-2"
+          :class="{'btn-success': selectedStat !== 'Locations', 'btn-primary': selectedStat === 'Locations'}"
+          @click="showStats('Locations')"
+        >
+          Locations
+        </button>
+        <button 
+          type="button" 
+          class="btn h-25 p-1 m-2"
+          :class="{'btn-success': selectedStat !== 'Episodes', 'btn-primary': selectedStat === 'Episodes'}"
+          @click="showStats('Episodes')"
+        >
+          Episodes
+        </button>
       </div>
       <div v-if="selectedStat === 'Characters'" class="d-flex justify-content-start" style="flex-direction: column;">
         <div class="d-flex justify-content-around flex-wrap">
