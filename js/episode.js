@@ -30,12 +30,20 @@ const appEPisodios = createApp({
                     this.episodes = data.results
                     this.episodesBK = data.results
                     this.info = data.info
-                    this.categorias()
+                    this.categorias
+
+                    
+
+
                 })
                 .catch(error => console.error(error))
         },
         fetchCharacters(episode) {
             this.selectedEpisode = episode
+
+           
+
+            console.log(episode)
             this.characters = []
             const characterPromises = episode.characters.map(url =>
                 fetch(url).then(res => res.json())

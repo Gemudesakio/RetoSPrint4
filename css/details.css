@@ -1,0 +1,123 @@
+
+    :root {
+        --kiwi-green: #88e23b;
+        --texas: #ebe480;
+        --tardis-blue: #043c6e;
+        --endo: #60a85f;
+        --mystery: #a6cccc;
+        --calla-green: #6b7132;
+        --white: #fff;
+        --black: #000;
+        --favorites: #f0ff25;
+        --alive: #60a85f;
+        --dead: #FF472C;
+        --unknown: #808080;
+        --warning: #FFCA2C;
+        --warning-complementary: #FF472C;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: var(--black);
+        color: var(--white);
+    }
+    
+    .card {
+        background-image: url(https://e0.pxfuel.com/wallpapers/873/692/desktop-wallpaper-interdimensional-rss-the-rick-and-morty-podcast-rick-and-morty-universe.jpg);
+        background-size: cover;
+        border: 5px solid var(--kiwi-green);
+        border-radius: 3rem;
+        overflow: hidden;
+    }
+    
+    .card img {
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+    
+    .card-body {
+        padding: 20px;
+        color: var(--white);
+    }
+    
+    .card-title {
+        color: var(--kiwi-green);
+        font-weight: bold;
+        font-size: 4rem;
+    }
+
+    .card-title-2 {
+        color: var(--mystery);
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    
+    .card-text {
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-text strong {
+        color: var(--texas);
+    }
+    
+    .container-episodes {
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-top: 1rem;
+        border-top: 1px solid var(--tardis-blue);
+        padding-top: 1rem;
+    }
+    
+    .card-mini {
+        color: var(--black);
+
+        
+
+
+    }
+    
+    .card-mini .card-header {
+        background-color: var(--calla-green);
+        color: var(--white);
+        padding: 0.2rem; /* Reduce el padding */
+        font-size: 0.6rem; /* Reduce el tamaño de la fuente */
+    }
+    
+    .card-mini .card-body  {
+        background-color: var(--mystery);
+        color: var(--black);
+        padding: 0.1rem; /* Reduce el padding */
+        font-size: rem; /* Reduce el tamaño de la fuente */
+        margin: 0;
+    }
+    
+    .card-mini .card-footer {
+        background-color: var(--tardis-blue);
+        color: var(--white);
+        font-size: 0.6rem; /* Reduce el tamaño de la fuente */
+        font-weight: 300;
+        padding: 0.1rem; /* Reduce el padding */
+        
+    }
+    
+    .container-episodes::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .container-episodes::-webkit-scrollbar-track {
+        background: #2c2c2c;
+        border-radius: 10px;
+    }
+    
+    .container-episodes::-webkit-scrollbar-thumb {
+        background: #7d7d7d;
+        border-radius: 10px;
+        border: 2px solid #2c2c2c;
+    }
+    
+    .container-episodes::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    

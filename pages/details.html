@@ -19,6 +19,7 @@
 </head>
 
 <body>
+  
     <!--Header-->
     <header class="sticky-top">
 
@@ -62,39 +63,69 @@
         </nav>
     </header>
 
-    <main id="app" class=" d-flex justify-content-center align-items-center">
-
-       
-
+    <main id="app" class="d-flex justify-content-center align-items-center">
+      <!-- Container para todo el código de la página -->
+      <div class="container-page container d-flex justify-content-center align-items-center">
         
-        <!-- Container para todo el código de la página -->
-        <div class="container-page  d-flex justify-content-center align-items-center">
-            
-            <div class="card m-4 shadow-lg p-3 mb-5 bg-body rounded" style="max-width: 500px;">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <img :src="characterData.image"
-                            class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h5 class="card-title">{{characterData.name}}</h5>
-                            <p class="card-text">{{characterData.gender}}</p>
-                            <p class="card-text">{{characterData.origin.name}}</p>
-                            <p class="card-text">{{characterData.species}}</p>
-                            <p class="card-text">{{characterData.type}}</p>
-                            <p class="card-text">{{characterData.location.name}}</p>
-                            <p class="card-text">{{characterData.name}}</p>
-                            <p class="card-text"></p>
+        <div class="card container shadow-lg p-5 mb-5 m-4 bg-body rounded">
+          <div class="row g-0">
+            <h5 class="card-title">{{characterData.name}}</h5>
+
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+              <img :src="characterData.image"
+                  class="img-fluid conta rounded-start" alt="Character Image">
+            </div>
+
+            <div class="col-md-3">
+              <div class="card-body">
+                <h6 class="card-title-2">General data</h6>
+                <p class="card-text"><strong>Status:</strong> <span :class="getStatusClass(characterData.status)">{{characterData.status}}</span></p>
+                <p class="card-text"><strong>Gender:</strong> {{characterData.gender}}</p>
+                <p class="card-text"><strong>Species:</strong> {{characterData.species}}</p>
+                <p class="card-text"><strong>Type:</strong> {{characterData.type || 'N/A'}}</p>
+                <p class="card-text"><strong>Origin:</strong> {{characterData.origin.name}}</p>
+                <h6 class="card-title-2">Location</h6>
+
+                <p class="card-text"><strong>Name:</strong> {{locationDetails.name}}</p>
+                <p class="card-text"><strong>Type:</strong> {{locationDetails.type}}</p>
+                <p class="card-text"><strong>Dimension:</strong> {{locationDetails.dimension}}</p>
+
 
                 
-                            <p class="card-text"><small class="text-muted">{{characterData.status}}</small></p>
-                        </div>
-                    </div>
-                </div>
+             </div>
             </div>
+
+            <div class="col-md-3">
+              <div class="card-body">
+                
+
+
+
+                <h5 class="card-title-2">Episodes</h5>
+
+                <div class="container-episodes">
+
+                  <div class="card-mini container card-mini my-2  text-center" v-for="episode in episodes" :key="episode.id">
+                    <div class="card-header">
+                      {{episode.episode}}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title-3"> {{episode.name}}</h5>
+                    </div>
+                    <div class="card-footer">
+                      Air Date {{episode.air_date}}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>    
+          </div>
         </div>
+      </div>
     </main>
+    
+
 
 
     

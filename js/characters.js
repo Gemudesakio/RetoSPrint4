@@ -1,4 +1,6 @@
-let urlApi = "https://rickandmortyapi.com/api/character"
+let urlApi =
+  "https://rickandmortyapi.com/api/character";
+
 
 const { createApp } = Vue
 const appCharacter = createApp({
@@ -9,11 +11,14 @@ const appCharacter = createApp({
       info: {},
       favoritosCharacters: [],
       textoBuscador: "",
-      estadoSeleccionado: ""
+      estadoSeleccionado: "",
+      status: [],
+      filterStatus: [],
     }
   },
   created() {
     this.traerData(urlApi)
+
     let dataLocal = JSON.parse(localStorage.getItem('favoritosCharacters'))
     if (dataLocal) {
       this.favoritosCharacters = dataLocal
@@ -24,28 +29,28 @@ const appCharacter = createApp({
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
-          this.character = data.results
-          this.characterBk = data.results
+          let pages = data.info.pages
+          let allCharacteres = [];
+
+          for (let i = 1; i <= pages; i++) {
+            fetch(`https://rickandmortyapi.com/api/character?page=${i}`)
+              .then((res) => res.json())
+              .then((data) => {
+                allCharacteres = [...allCharacteres, ...data.results]
+                if (i === pages) {
+                  this.character = allCharacteres;
+                  this.characterBk = allCharacteres;
+                  this.status = [...new Set(allCharacteres.map(char => char.status))]
+                }
+              })
+              .catch((error) => console.error(error))
+          }
+
           this.info = data.info
         })
         .catch((error) => console.error(error))
     },
-    prevPage() {
-      if (this.info.prev) {
-        this.traerData(this.info.prev)
-      }
-    },
-    nextPage() {
-      if (this.info.next) {
-        this.traerData(this.info.next)
-      }
-    },
-    filterButton(estado) {
-      this.estadoSeleccionado = estado
-    },
-    resetFilter() {
-      this.estadoSeleccionado = ""
-    },
+
     agregarFavorito(favorito) {
       if (!this.favoritosCharacters.includes(favorito)) {
         this.favoritosCharacters.push(favorito)
@@ -53,7 +58,6 @@ const appCharacter = createApp({
           "favoritosCharacters",
           JSON.stringify(this.favoritosCharacters)
         )
-        console.log(this.favoritosCharacters)
       }
     },
     eliminarFavorito(favorito) {
@@ -64,25 +68,43 @@ const appCharacter = createApp({
         "favoritosCharacters",
         JSON.stringify(this.favoritosCharacters)
       )
-    }
+    },
+    getStatusClass(status) {
+      switch (status.toLowerCase()) {
+        case 'alive':
+          return 'status-alive';
+        case 'dead':
+          return 'status-dead';
+        default:
+          return 'status-unknown';
+      }
+    },
+    getGenderClass(gender) {
+      switch (gender.toLowerCase()) {
+        case 'male':
+          return 'gender-male';
+        case 'female':
+          return 'gender-female';
+        case 'unknown':
+          return 'gender-unknown';
+        default:
+          return 'gender-unknown';
+      }
+    },
+
   },
   computed: {
-    filteredCharacters() {
-      let filtered = this.characterBk
+    superFiltro() {
+      //Filtrar por tipo o nombre
+      let text = this.characterBk.filter(char =>
+        char.name.toLowerCase().includes(this.textoBuscador.toLowerCase())
+      );
 
-      if (this.estadoSeleccionado) {
-        filtered = filtered.filter(char =>
-          char.status.includes(this.estadoSeleccionado)
-        )
+      if (this.filterStatus.length == 0) {
+        this.character = text;
+      } else {
+        this.character = text.filter(char => this.filterStatus.includes(char.status));
       }
-
-      if (this.textoBuscador.trim() !== "") {
-        filtered = filtered.filter(char =>
-          char.name.toLowerCase().includes(this.textoBuscador.toLowerCase())
-        )
-      }
-
-      return filtered
-    }
-  }
-}).mount("#appCharacters")
+    },
+  },
+}).mount("#appCharacters");

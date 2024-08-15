@@ -119,6 +119,7 @@ const app = createApp({
         },
 
         async loadResidents(residentsUrls) {
+            
             this.residents = []; // Limpiar datos anteriores
             try {
                 let fetchPromises = residentsUrls.map(url => fetch(url).then(response => response.json()));
