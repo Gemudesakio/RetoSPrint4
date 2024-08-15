@@ -19,6 +19,12 @@
 </head>
 
 <body>
+  <section class="sec1-video">
+    <video class="video-bg" autoplay muted loop playsinline>
+      <source src="../assets/videos/rickAndMorty.mkv" type="video/mp4">
+    </video>
+  </section>
+
   <!--Header-->
   <header class="sticky-top">
     <!--Navbar-->
@@ -59,18 +65,234 @@
   </header>
 
   <main id="app">
-    <div class="d-flex justify-content-center bg-warning m-3">
-      <h1>Locations Page</h1>
+    <div class="container-fluid container-header-page">
+      <div class="row align-items-center ">
+        <h1 class="my-2 text-center text-white">Rick and Morty Locations</h1>
+      </div>
+
+      <div class="container-header-page-filters">
+        {{superFiltro}}
+
+        <div class="row p-5 py-5">
+          <!-- <div class=" col-md-6 d-flex justify-content-center justify-content-md-start align-items-center mb-3 mb-md-0">
+            <div class="container container-main-search">
+              <div>
+                <h3>About Locations</h3>
+              </div>
+              <div class="d-flex flex-wrap gap-3">
+
+                <div class="card-mini conta text-bg-dark">
+                  <img src="https://pm1.aminoapps.com/6657/d6b98f8b2840e29c77e1ad356064447d22786a0f_hq.jpg" class="card-img" alt="...">
+                  <div class="card-mini-img-overlay">
+                    <h5 class="card-mini-title">{{countTotal}}</h5>
+                    <p class="card-mini-text">Locations</p>
+                  </div>
+                </div>
+
+                <div class="card-mini text-bg-dark">
+                  <img src="https://as1.ftcdn.net/v2/jpg/05/69/00/30/1000_F_569003014_MI3jBRcQV7T4vTtJWizoww4m6OzqTnwO.jpg" class="card-img" alt="...">
+                  <div class="card-mini-img-overlay">
+                    <h5 class="card-mini-title">{{dimensions.length}}</h5>
+                    <p class="card-mini-text">Dimension</p>
+                  </div>
+                </div>
+
+                <div class="card-mini text-bg-dark">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT25lZprbY7imkH5ySPd0xM0G5WGGsNOgSblw&s" class="card-img" alt="...">
+                  <div class="card-mini-img-overlay">
+                    <h5 class="card-mini-title">{{types.length}}</h5>
+                    <p class="card-mini-text">Type</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-md-12 d-flex justify-content-end ">
+            <form class=" container container-main-search" role="search">
+              <div class="container-buscador-main ">
+                <label for="busquedamain">Search</label>
+                <svg width="30px" height="30px" viewBox="-6 -6 36.00 36.00" fill="none"
+                  xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+
+                  <g stroke-width="0" transform="translate(0,0), scale(1)">
+                    <rect x="-6" y="-6" width="36.00" height="36.00" rx="18" fill="#f64137" stroke-width="0"></rect>
+                  </g>
+
+                  <g stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+                    stroke-width="0.8640000000000001" />
+
+                  <g>
+                    <path
+                      d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                      stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+
+                </svg>
+              </div>
+              <input v-model="filterText" class="form-busqueda" id="textSearch"
+              placeholder="Search by Name or Type" aria-label="Search" type="text">
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <div class="m-3 d-flex justify-content-center">
+      <button type="button" class="btn btn-primary btn-floating" data-bs-toggle="modal"
+        data-bs-target="#favoritesModal">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCA2C" class="bi bi-star-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+          </svg>
+        </span>
+        <span class="title">Favorites</span>
+      </button>
+    </div>
+
+    <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content modal-favorites">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold text-center w-100" id="favoritesModalLabel">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFCA2C" class="mx-3 bi bi-star-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+              </svg>
+              Favorites
+            </h1>
+            <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="favorites-section">
+              <!-- <h2 class="section-title">Favorite Characters</h2> -->
+              <div class="favorites-carousel">
+                <div v-if="favoritesLocations.length === 0">
+                  <div class="card-mini mb-3">
+                    <div class="card-mini-img-container">
+                      <img
+                        src="https://static.wikia.nocookie.net/rickandmorty/images/e/e3/No_Image.png"
+                        class="card-mini-img-top bg-body-tertiary" alt="No Image">
+                    </div>
+
+                    <div class="card-mini-body d-flex flex-column align-items-center gap-2">
+                      <h4 class=" mt-2 fw-bold text-white text-center"> No favorite characters yet.</h4>
+
+                      <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+                <div v-for="favorito in favoritesLocations" :key="favorito.id" class="card-mini mb-3">
+                  <div class="card-mini-img-container">
+                    <button class="btn btn-danger btn-favoritos" @click="removeFavorite(favorito)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-trash" viewBox="0 0 16 16">
+                        <path
+                          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                        <path
+                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                      </svg>
+                    </button>
+                    <img :src="getImageUrl(favorito.dimension)" class="card-mini-img-top bg-body-tertiary"
+                      alt="Character Image">
+                  </div>
+                  <div class="card-mini-body d-flex flex-column align-items-center gap-2">
+                    <h5 class="fw-bold text-white text-center">{{favorito.name}}</h5>
+                    <div class="card-mini-about">
+                       <p class="text-white"><span>Type - </span><span class="text-uppercase fw-bold">{{
+                          favorito.type.toLowerCase()}}</span></p>
+                      <p class="text-white"><span>Dimension - </span><span class="text-uppercase fw-bold">{{
+                          favorito.dimension.toLowerCase()}}</span></p>
+                      
+                    </div>
+
+                    <div class="bar">
+                      <div class="emptybar"></div>
+                      <div class="filledbar"></div>
+                    </div>
+
+
+                    <!-- <a :href="'./details.html?id='+favorito.id" class="btn btn-primary">View more details</a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--  <div class="favorites-section">
+              <h2 class="section-title">Favorite Locations</h2>
+              <div class="favorites-carousel">
+                <div v-if="favoritosCharacters.length === 0"> 
+                  <div class="card-mini mb-3">
+                    <div class="card-mini-img-container">
+                      <img
+                        src="https://decalfly.com/cdn/shop/products/rick-and-morty-circle-decal-sticker.jpg?v=1570918206"
+                        class="card-mini-img-top" alt="No Image">
+                    </div>
+
+                    <div class="card-mini-body d-flex flex-column align-items-center gap-2">
+                      <h4 class=" mt-2 fw-bold text-white text-center"> No favorite characters yet.</h4>
+
+                      <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="favorites-section">
+              <h2 class="section-title">Favorite Episodes</h2>
+              <div class="favorites-carousel">
+                <div v-if="favoritosCharacters.length === 0"> 
+                  <div class="card-mini mb-3">
+                    <div class="card-mini-img-container">
+                      <img
+                        src="https://decalfly.com/cdn/shop/products/rick-and-morty-circle-decal-sticker.jpg?v=1570918206"
+                        class="card-mini-img-top" alt="No Image">
+                    </div>
+
+                    <div class="card-mini-body d-flex flex-column align-items-center gap-2">
+                      <h4 class=" mt-2 fw-bold text-white text-center"> No favorite characters yet.</h4>
+
+                      <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
     <!-- Botón para abrir el modal Fvoritos-->
-    <div class="container-fluid mt-3 mb-3 d-flex flex-wrap justify-content-center bg-dark">
-      <!-- Button lanzador modal favoritos -->
+    <!-- div class="container-fluid mt-3 mb-3 d-flex flex-wrap justify-content-center bg-dark">
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
         View Favorites
       </button>
 
-      <!-- Modal Favoritos -->
       <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -82,7 +304,7 @@
             <div class="modal-body">
               <div class="card m-3" v-for="location in favoritesLocations" :key="location.id">
                 <img :src="getImageUrl(location.dimension)" class="card-img-top h-50" alt="Location Image" />
-  
+
                 <div class="card-body bg-primary h-50">
                   <h5 class="card-title">{{ location.name }}</h5>
                   <p class="card-text">
@@ -92,26 +314,25 @@
                     {{ location.dimension ? location.dimension : 'No dimension'
                     }}
                   </p>
-  
+
                   <button class="btn btn-light" @click="openLocationModal(location)" title="More info">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info"
-                      viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-info" viewBox="0 0 16 16">
                       <path
                         d="M8 1.5a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13zm0-1a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" />
                       <path
                         d="m8.93 6.588-2.29.287.082.446c.45-.558.992-.985 1.481-1.326a1.416 1.416 0 0 1 .727-.225c.327 0 .628.09.854.26.198.15.291.37.291.63 0 .287-.093.537-.237.707-.197.227-.48.413-.821.547-.242.097-.52.17-.839.247-.412.097-.843.21-1.228.393-.433.203-.702.58-.702 1.096 0 .658.492 1.183 1.08 1.183.377 0 .703-.157.948-.416.2-.21.337-.522.406-.822l.083-.446 2.229-.287-.083.446c-.179.976-.844 1.724-1.707 2.129-.577.268-1.213.4-1.89.416-1.257-.016-2.227-.594-2.648-1.516-.433-.95-.221-2.073.425-2.877.676-.832 1.607-1.302 2.63-1.421z" />
                     </svg>
                   </button>
-  
+
                   <button class="btn btn-light" @click="removeFavorite(location)" title="Remove from Favorite">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
-                      viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-star" viewBox="0 0 16 16">
                       <path
                         d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
                     </svg>
                   </button>
-  
-                  <!-- Modal de ubicación -->
+
                   <div v-if="showLocationModal" class="modal modal-style" tabindex="-1">
                     <div class="modal-dialog text-white">
                       <div class="modal-content"
@@ -131,7 +352,7 @@
                           <p>
                             {{ selectedLocation?.dimension ? selectedLocation.dimension : 'No dimension' }}
                           </p>
-  
+
                           <div v-if="residents.length > 0">
                             <h6>Residents</h6>
                             <div class="d-flex flex-wrap container-resident">
@@ -159,25 +380,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <!-- Contenedores de datos totales -->
-    <div class="container-fluid d-flex flex-wrap justify-content-center bg-primary">
-      <div class="container-total-data bg-warning m-3 p-3">
-        <h2>Total Locations</h2>
-        <h2>{{countTotal}}</h2>
-      </div>
 
-      <div class="container-total-data bg-success m-3 p-3">
-        <h2>Total Dimension</h2>
-        <h2>{{dimensions.length}}</h2>
-      </div>
-
-      <div class="container-total-data bg-danger m-3 p-3">
-        <h2>Total Type</h2>
-        <h2>{{types.length}}</h2>
-      </div>
-    </div>
 
     <!-- Contenedor de Filtros -->
     <div class="container-filters bg-dark m-3 d-flex">
@@ -187,8 +392,7 @@
         <div v-for="dimension in dimensions" id="filter-checkboxs" class="">
           <div class="form-check form-switch">
             <label class="form-check-label" :for="dimension">
-              <input class="form-check-input" type="checkbox" :id="stat" :value="stat"
-                v-model="filterDimension" />
+              <input class="form-check-input" type="checkbox" :id="stat" :value="stat" v-model="filterDimension" />
               {{stat ? stat : 'No status'}}
             </label>
           </div>
@@ -290,12 +494,14 @@
   </main>
 
 
-  <footer class="footer py-5 text-white" >
+  <footer class="footer py-5 text-white">
     <div class="container">
       <div class="row justify-content-between align-items-center">
         <div class="col-xl-4 col-lg-6 col-md-12 mb-4">
           <div class="media">
-            <img class="align-self-center logo-footer img-fluid mobile-img mr-3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/800px-Rick_and_Morty.svg.png" alt="logo">
+            <img class="align-self-center logo-footer img-fluid mobile-img mr-3"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/800px-Rick_and_Morty.svg.png"
+              alt="logo">
             <div class="media-body">
               <h4 class="mt-0">Wiki API</h4>
             </div>
@@ -305,17 +511,21 @@
           <div class="row">
             <div class="col-md-3 col-12 mb-4">
               <ul class="list-unstyled">
-                <li><h5>Quick Links</h5></li>
+                <li>
+                  <h5>Quick Links</h5>
+                </li>
                 <li><a class="text-decoration-none text-white" href="../index.html"> Home </a></li>
                 <li><a class="text-decoration-none text-white" href="./characters.html"> Characters </a></li>
                 <li><a class="text-decoration-none text-white" href="./location.html"> Locations </a></li>
-                <li><a class="text-decoration-none text-white"  href="./episode.html"> Episodes </a></li>
-                <li><a class="text-decoration-none text-white"  href="./Stats.html"> Stats </a></li>
+                <li><a class="text-decoration-none text-white" href="./episode.html"> Episodes </a></li>
+                <li><a class="text-decoration-none text-white" href="./Stats.html"> Stats </a></li>
               </ul>
             </div>
             <div class="col-md-3 col-12 mb-4">
               <ul class="list-unstyled">
-                <li><h5>Seasons</h5></li>
+                <li>
+                  <h5>Seasons</h5>
+                </li>
                 <li><a class="text-decoration-none text-white" href="./episode.html">Season 1</a></li>
                 <li><a class="text-decoration-none text-white" href="./episode.html">Season 2</a></li>
                 <li><a class="text-decoration-none text-white" href="./episode.html">Season 3</a></li>
@@ -325,62 +535,75 @@
             </div>
             <div class="col-md-3 col-12 mb-4">
               <ul class="list-unstyled">
-                <li><h5>Developers</h5></li>
+                <li>
+                  <h5>Developers</h5>
+                </li>
                 <li>
                   <a href="https://github.com/Gemudesakio" class="text-decoration-none text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                      class="bi bi-github" viewBox="0 0 16 16">
+                      <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
                     </svg> Luis Rivera
                   </a>
                 </li>
                 <li>
                   <a href="https://github.com/mxsrxm" class="text-decoration-none text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                      class="bi bi-github" viewBox="0 0 16 16">
+                      <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
                     </svg> Misraim Hernandez
                   </a>
                 </li>
                 <li>
                   <a href="https://github.com/yebarreras" class="text-decoration-none text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                      class="bi bi-github" viewBox="0 0 16 16">
+                      <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
                     </svg> Yamid Barrera
                   </a>
                 </li>
               </ul>
-              
+
             </div>
             <div class="col-md-3 col-12 mb-4 text-md-right text-center">
               <ul class="list-unstyled">
                 <li>Get the source code</li>
                 <li></li>
               </ul>
-              <a href="https://github.com/Gemudesakio/RetoSprint4/" class="text-white" title="View source code on GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+              <a href="https://github.com/Gemudesakio/RetoSprint4/" class="text-white"
+                title="View source code on GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-github"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
                 </svg>
               </a>
 
               <a href="https://mindhubweb.com">
-                <img class="logo-footer img-fluid" src="https://mindhubweb.com/img/logo_blanco.ca1738c0.webp" alt="Mindhub">
-    
+                <img class="logo-footer img-fluid" src="https://mindhubweb.com/img/logo_blanco.ca1738c0.webp"
+                  alt="Mindhub">
+
               </a>
 
-              
+
             </div>
-            
+
           </div>
         </div>
       </div>
       <div class="row mt-4 justify-content-between align-items-center">
         <div class="col-sm-auto col-12 text-center text-sm-left">
-          
+
           <small class="footer-note">
-            <span class="copyright-symbol">©</span> This site is not official and is an educational project created by students of the <strong>MindHub 2024 Full Stack Development course</strong>.
+            <span class="copyright-symbol">©</span> This site is not official and is an educational project created by
+            students of the <strong>MindHub 2024 Full Stack Development course</strong>.
           </small>
-          
+
         </div>
-       
+
       </div>
     </div>
   </footer>
@@ -393,7 +616,7 @@
   <!--Vue Scripy-->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <!--Location script-->
-   <script src="../js/location.js" type="module"></script> 
+  <script src="../js/location.js" type="module"></script>
 </body>
 
 </html>

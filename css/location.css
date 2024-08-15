@@ -1,17 +1,61 @@
- .container-filter-checkbox-locations {
-   max-height: 150px;
-   overflow-y: auto;
- }
 
- .container-cards-locations {
-   max-height: 600px;
-   overflow-y: auto;
- }
 
- .card {
-   width: 260px;
-   height: 400px;
- }
+.card-mini {
+    min-height: 100px;
+    max-width: 100px;
+    background-color: #17141d;
+    border-radius: 10px;
+    box-shadow: -0.3rem 0 1rem #000;
+    margin: 20px;
+    transition: 0.4s ease-out;
+    padding: 20px;
+}
+
+.card-mini:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+}
+
+.title {
+    color: white;
+    font-weight: 400;
+    position: absolute;
+    top: 15px;
+    text-align: center;
+}
+
+
+
+.card-mini:hover .filledbar {
+    width: 150px;
+    transition: 0.4s ease-out;
+}
+
+.card-mini-img-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.card-mini-img-top {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.card-mini-about>p {
+    color: white;
+    font-weight: 100;
+    font-size: 1rem;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+
 
  .modal-style{
   display: block;

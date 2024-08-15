@@ -479,8 +479,9 @@ footer {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
   -webkit-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
   background-color: #0000008c;
   color: var(--white);
   border-radius: 4px;
@@ -528,6 +529,15 @@ footer {
 .customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox .inner {
   transform: translate(-2px);
 }
+
+
+.btn-favoritos {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  z-index: 10;
+}
+
 
 
 
