@@ -83,7 +83,6 @@
 
 .modal-style{
 display: block;
-
 }
 
 .modal-content {
@@ -380,4 +379,8 @@ width: 9rem;
 .container-filter-checkboxs::-webkit-scrollbar-thumb:hover {
   background-color: var(--kiwi-green); 
 
+}
+
+.card-miniatura > img {
+  filter: brightness(0.9);
 }

@@ -116,22 +116,6 @@
     /* Ajusta el interlineado para un mejor ajuste */
 }
 
-.posbtn {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: calc(100% - 2rem);
-    /* Ajusta el ancho para que el padding no afecte */
-    padding: 0 1rem;
-    /* Añade padding si es necesario */
-}
-
-
 .card-mini {
     min-height: 100px;
     max-width: 100px;
@@ -193,7 +177,7 @@
 
 .card-about {
     display: flex;
-    height: 500px;
-}
+/*     height: 500px;
+ */}
 
 

@@ -125,11 +125,11 @@
                     {{dimension ? dimension : 'No dimension'}}
                   </label>
                 </div>
-  
+
               </div>
 
             </div>
-            
+
           </div>
 
         </div>
@@ -196,7 +196,7 @@
     </div>
 
     <!-- Modal de ubicación -->
-    <div v-if="showLocationModal" class="modal modal-style" tabindex="-1">
+    <div v-if="showLocationModal" class="modal modal-style" tabindex="-1" role="dialog">
       <div class="modal-dialog text-white">
         <div class="modal-content"
           :style="{ backgroundImage: 'url(' + modalImageUrl + ')', backgroundSize: 'cover', backgroundPosition: 'center' }">
@@ -235,7 +235,6 @@
                     </div>
                   </div>
                 </a>
-
               </div>
             </div>
           </div>
