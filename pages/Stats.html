@@ -142,12 +142,14 @@
           </h3>
           <div class="d-flex justify-content-center flex-wrap gap-1 m-2" style="max-width: 98%;">
             <div v-for="character in topTenC" class="card" style="width: 7rem; height: 14rem;">
+              <!-- a :href="'./details.html?id='+character.id" class="text-decoration-none text-dark"> -->
               <img :src="character.image" class="card-img-top" alt="character.name">
               <div class="card-body p-2 bg-success-subtle">
                 <p class="card-text text-center fw-semibold">#{{topTenC.indexOf(character)+1}}
                   <br>{{character.episode.length}} Eps. <br>{{character.name}}
                 </p>
               </div>
+            <!-- </a> -->
             </div>
           </div>
         </div>
@@ -181,11 +183,16 @@
           <h3 class="text-warning bg-success align-self-center border rounded p-1">Residents of the {{currentLocationName}} - {{currentResidents.length}}
           </h3>
           <div class="d-flex justify-content-center flex-wrap gap-1 m-2" style="max-width: 98%;">
-            <div v-for="resident in currentResidents" class="card text-bg-dark" style="width: 5rem; overflow: hidden;">
-              <img :src="resident.image" class="card-img" alt="...">
-              <div class="card-img-overlay d-flex justify-content-center align-items-end p-0">
-                <h5 class="card-title fs-6">{{resident.name}}</h5>
+            <div v-for="resident in currentResidents" >
+              <a :href="'./details.html?id='+resident.id">
+              <div class="card text-bg-dark" style="width: 5rem; overflow: hidden;">
+                <img :src="resident.image" class="card-img" alt="...">
+                <div class="card-img-overlay d-flex justify-content-center align-items-end p-0">
+                  <h5 class="card-title fs-6">{{resident.name}}</h5>
+                </div>
               </div>
+            </a>
+              
             </div>
           </div>
         </div>

@@ -19,11 +19,13 @@
 </head>
 
 <body>
+
   <section class="sec1-video">
     <video class="video-bg" autoplay muted loop playsinline>
       <source src="../assets/videos/rickAndMorty.mkv" type="video/mp4">
     </video>
   </section>
+
 
   <!--Header-->
   <header class="sticky-top">
@@ -69,46 +71,15 @@
       <div class="row align-items-center ">
         <h1 class="my-2 text-center text-white">Rick and Morty Locations</h1>
       </div>
+    </div>
 
-      <div class="container-header-page-filters">
-        {{superFiltro}}
+    <div class="p-3 container-fluid d-flex flex-wrap">
 
-        <div class="row p-5 py-5">
-          <!-- <div class=" col-md-6 d-flex justify-content-center justify-content-md-start align-items-center mb-3 mb-md-0">
-            <div class="container container-main-search">
-              <div>
-                <h3>About Locations</h3>
-              </div>
-              <div class="d-flex flex-wrap gap-3">
+      <div class="row w-100">
 
-                <div class="card-mini conta text-bg-dark">
-                  <img src="https://pm1.aminoapps.com/6657/d6b98f8b2840e29c77e1ad356064447d22786a0f_hq.jpg" class="card-img" alt="...">
-                  <div class="card-mini-img-overlay">
-                    <h5 class="card-mini-title">{{countTotal}}</h5>
-                    <p class="card-mini-text">Locations</p>
-                  </div>
-                </div>
-
-                <div class="card-mini text-bg-dark">
-                  <img src="https://as1.ftcdn.net/v2/jpg/05/69/00/30/1000_F_569003014_MI3jBRcQV7T4vTtJWizoww4m6OzqTnwO.jpg" class="card-img" alt="...">
-                  <div class="card-mini-img-overlay">
-                    <h5 class="card-mini-title">{{dimensions.length}}</h5>
-                    <p class="card-mini-text">Dimension</p>
-                  </div>
-                </div>
-
-                <div class="card-mini text-bg-dark">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT25lZprbY7imkH5ySPd0xM0G5WGGsNOgSblw&s" class="card-img" alt="...">
-                  <div class="card-mini-img-overlay">
-                    <h5 class="card-mini-title">{{types.length}}</h5>
-                    <p class="card-mini-text">Type</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <div class="col-md-12 d-flex justify-content-end ">
+        <div class="container container-filter  p-3 col-lg-4 col-md-6 col-12 mb-3">
+          {{superFiltro}}
+          <div class="col-12 mb-3">
             <form class=" container container-main-search" role="search">
               <div class="container-buscador-main ">
                 <label for="busquedamain">Search</label>
@@ -130,9 +101,143 @@
 
                 </svg>
               </div>
-              <input v-model="filterText" class="form-busqueda" id="textSearch"
-              placeholder="Search by Name or Type" aria-label="Search" type="text">
+              <input v-model="filterText" class="form-busqueda" id="textSearch" placeholder="Search by Name or Type"
+                aria-label="Search" type="text">
             </form>
+          </div>
+
+          <div class="col-12">
+
+            <form class=" container container-main-search mt-3" role="search">
+              <div class="container-buscador-main ">
+                <label>Filter by Dimension</label>
+              </div>
+            </form>
+
+            <div class="container-filter-checkboxs">
+              <div v-for="dimension in dimensions" id="filter-checkboxs" class="">
+
+                <div class="checkbox-wrapper-29 my-2">
+                  <label class="checkbox" :for="dimension">
+                    <input type="checkbox" class="checkbox__input" :id="dimension" :value="dimension"
+                      v-model="filterDimension">
+                    <span class="checkbox__label"></span>
+                    {{dimension ? dimension : 'No dimension'}}
+                  </label>
+                </div>
+  
+              </div>
+
+            </div>
+            
+          </div>
+
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center col-lg-8 col-md-6 col-12 container-cards">
+
+          <div v-if="locations.length === 0">
+            <div class="card mb-3">
+              <div class="card-mini-img-container">
+                <img src="https://static.wikia.nocookie.net/rickandmorty/images/e/e3/No_Image.png"
+                  class="card-img-top bg-body-tertiary" alt="No Image">
+              </div>
+              <div class="card-body d-flex flex-column align-items-center gap-2">
+                <h4 class=" mt-2 fw-bold text-white text-center"> No locations found.</h4>
+                <div class="bar">
+                  <div class="emptybar"></div>
+                  <div class="filledbar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div v-for="location in locations" :key="location.id" class="card">
+            <div class="card-img-container">
+              <button class="btn btn-warning btn-favoritos" @click="addFavorite(location)" title="Add to Favorites">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                </svg>
+              </button>
+              <img :src="getImageUrl(location.dimension)" class="card-img-top bg-body-tertiary" alt="Character Image">
+            </div>
+            <div class="card-body d-flex flex-column align-items-center gap-2">
+              <h2 class="card-title fw-bold text-white text-center">{{ location.name }}</h2>
+              <div class="card-about d-flex flex-column">
+                <p class="text-white d-flex  mx-1">
+                  <span>Type&nbsp;:&nbsp;</span>
+                  <span class="text-uppercase fw-bold"><span> </span> {{ location.type.toLowerCase() }}</span>
+                </p>
+                <p class="text-white d-flex mx-1">
+                  <span>Dimension&nbsp;:&nbsp;</span>
+                  <span class="text-uppercase fw-bold"><span> </span> {{ location.dimension.toLowerCase() }}</span>
+                </p>
+              </div>
+
+            </div>
+
+            <div class="posbtn">
+              <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
+              </div>
+              <div class="btn-container mt-1">
+
+                <a @click="openLocationModal(location)" class="btn btn-primary">
+                  View more details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de ubicación -->
+    <div v-if="showLocationModal" class="modal modal-style" tabindex="-1">
+      <div class="modal-dialog text-white">
+        <div class="modal-content"
+          :style="{ backgroundImage: 'url(' + modalImageUrl + ')', backgroundSize: 'cover', backgroundPosition: 'center' }">
+          <div class="modal-overlay"></div>
+          <div class="modal-header">
+            <h2 class="modal-title">
+              {{ selectedLocation?.name }}
+            </h2>
+            <button type="button" class="btn-close" @click="closeModal" title="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="card-about-modal d-flex justify-content-between px-5 px-2">
+              <p class="text-white d-flex  mx-1">
+                <span class="modal-sb-tittle-2">Type&nbsp;:&nbsp;</span>
+                <span class="text-uppercase fw-bold"><span> </span> {{ selectedLocation.type.toLowerCase() }}</span>
+              </p>
+              <p class="text-white d-flex mx-1">
+                <span class="modal-sb-tittle-2">Dimension&nbsp;:&nbsp;</span>
+                <span class="text-uppercase fw-bold"><span> </span> {{ selectedLocation.dimension.toLowerCase()
+                  }}</span>
+              </p>
+            </div>
+
+            <h6 class="modal-sb-tittle">Residents</h6>
+
+            <div class="d-flex justify-content-center flex-wrap gap-1 m-2">
+              <div v-for="resident in residents">
+                <a :href="'./details.html?id='+resident.id">
+                  <div class="card-miniatura text-bg-dark">
+                    <img :src="resident.image" class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                      <h5 class="card-title fs-6 mb-0 text-center text-light text-shadow">
+                        {{ resident.name }}
+                      </h5>
+                    </div>
+                  </div>
+                </a>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -173,17 +278,18 @@
                 <div v-if="favoritesLocations.length === 0">
                   <div class="card-mini mb-3">
                     <div class="card-mini-img-container">
-                      <img
-                        src="https://static.wikia.nocookie.net/rickandmorty/images/e/e3/No_Image.png"
+                      <img src="https://static.wikia.nocookie.net/rickandmorty/images/e/e3/No_Image.png"
                         class="card-mini-img-top bg-body-tertiary" alt="No Image">
                     </div>
 
                     <div class="card-mini-body d-flex flex-column align-items-center gap-2">
                       <h4 class=" mt-2 fw-bold text-white text-center"> No favorite characters yet.</h4>
 
-                      <div class="bar">
-                        <div class="emptybar"></div>
-                        <div class="filledbar"></div>
+                      <div class="posbtn">
+                        <div class="bar">
+                          <div class="emptybar"></div>
+                          <div class="filledbar"></div>
+                        </div>
                       </div>
 
 
@@ -207,282 +313,21 @@
                   <div class="card-mini-body d-flex flex-column align-items-center gap-2">
                     <h5 class="fw-bold text-white text-center">{{favorito.name}}</h5>
                     <div class="card-mini-about">
-                       <p class="text-white"><span>Type - </span><span class="text-uppercase fw-bold">{{
+                      <p class="text-white"><span>Type - </span><span class="text-uppercase fw-bold">{{
                           favorito.type.toLowerCase()}}</span></p>
                       <p class="text-white"><span>Dimension - </span><span class="text-uppercase fw-bold">{{
                           favorito.dimension.toLowerCase()}}</span></p>
-                      
+
                     </div>
 
-                    <div class="bar">
-                      <div class="emptybar"></div>
-                      <div class="filledbar"></div>
-                    </div>
-
-
-                    <!-- <a :href="'./details.html?id='+favorito.id" class="btn btn-primary">View more details</a> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!--  <div class="favorites-section">
-              <h2 class="section-title">Favorite Locations</h2>
-              <div class="favorites-carousel">
-                <div v-if="favoritosCharacters.length === 0"> 
-                  <div class="card-mini mb-3">
-                    <div class="card-mini-img-container">
-                      <img
-                        src="https://decalfly.com/cdn/shop/products/rick-and-morty-circle-decal-sticker.jpg?v=1570918206"
-                        class="card-mini-img-top" alt="No Image">
-                    </div>
-
-                    <div class="card-mini-body d-flex flex-column align-items-center gap-2">
-                      <h4 class=" mt-2 fw-bold text-white text-center"> No favorite characters yet.</h4>
-
+                    <div class="posbtn">
                       <div class="bar">
                         <div class="emptybar"></div>
                         <div class="filledbar"></div>
                       </div>
 
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="favorites-section">
-              <h2 class="section-title">Favorite Episodes</h2>
-              <div class="favorites-carousel">
-                <div v-if="favoritosCharacters.length === 0"> 
-                  <div class="card-mini mb-3">
-                    <div class="card-mini-img-container">
-                      <img
-                        src="https://decalfly.com/cdn/shop/products/rick-and-morty-circle-decal-sticker.jpg?v=1570918206"
-                        class="card-mini-img-top" alt="No Image">
                     </div>
 
-                    <div class="card-mini-body d-flex flex-column align-items-center gap-2">
-                      <h4 class=" mt-2 fw-bold text-white text-center"> No favorite characters yet.</h4>
-
-                      <div class="bar">
-                        <div class="emptybar"></div>
-                        <div class="filledbar"></div>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-  
-
-
-
-    <!-- Botón para abrir el modal Fvoritos-->
-    <!-- div class="container-fluid mt-3 mb-3 d-flex flex-wrap justify-content-center bg-dark">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
-        View Favorites
-      </button>
-
-      <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold text-center w-100" id="favoritesModalLabel">Favorite Locations</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="card m-3" v-for="location in favoritesLocations" :key="location.id">
-                <img :src="getImageUrl(location.dimension)" class="card-img-top h-50" alt="Location Image" />
-
-                <div class="card-body bg-primary h-50">
-                  <h5 class="card-title">{{ location.name }}</h5>
-                  <p class="card-text">
-                    {{ location.type ? location.type : 'No type' }}
-                  </p>
-                  <p class="card-text">
-                    {{ location.dimension ? location.dimension : 'No dimension'
-                    }}
-                  </p>
-
-                  <button class="btn btn-light" @click="openLocationModal(location)" title="More info">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                      class="bi bi-info" viewBox="0 0 16 16">
-                      <path
-                        d="M8 1.5a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13zm0-1a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" />
-                      <path
-                        d="m8.93 6.588-2.29.287.082.446c.45-.558.992-.985 1.481-1.326a1.416 1.416 0 0 1 .727-.225c.327 0 .628.09.854.26.198.15.291.37.291.63 0 .287-.093.537-.237.707-.197.227-.48.413-.821.547-.242.097-.52.17-.839.247-.412.097-.843.21-1.228.393-.433.203-.702.58-.702 1.096 0 .658.492 1.183 1.08 1.183.377 0 .703-.157.948-.416.2-.21.337-.522.406-.822l.083-.446 2.229-.287-.083.446c-.179.976-.844 1.724-1.707 2.129-.577.268-1.213.4-1.89.416-1.257-.016-2.227-.594-2.648-1.516-.433-.95-.221-2.073.425-2.877.676-.832 1.607-1.302 2.63-1.421z" />
-                    </svg>
-                  </button>
-
-                  <button class="btn btn-light" @click="removeFavorite(location)" title="Remove from Favorite">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                      class="bi bi-star" viewBox="0 0 16 16">
-                      <path
-                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
-                    </svg>
-                  </button>
-
-                  <div v-if="showLocationModal" class="modal modal-style" tabindex="-1">
-                    <div class="modal-dialog text-white">
-                      <div class="modal-content"
-                        :style="{ backgroundImage: 'url(' + modalImageUrl + ')', backgroundSize: 'cover', backgroundPosition: 'center' }">
-                        <div class="modal-overlay"></div>
-                        <div class="modal-header">
-                          <h5 class="modal-title">
-                            {{ selectedLocation?.name }}
-                          </h5>
-                          <button type="button" class="btn-close" @click="closeModal" title="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <p>
-                            {{ selectedLocation?.type ? selectedLocation.type :
-                            'No type' }}
-                          </p>
-                          <p>
-                            {{ selectedLocation?.dimension ? selectedLocation.dimension : 'No dimension' }}
-                          </p>
-
-                          <div v-if="residents.length > 0">
-                            <h6>Residents</h6>
-                            <div class="d-flex flex-wrap container-resident">
-                              <div class="card-resident m-1" v-for="resident in residents" :key="resident.id">
-                                <img :src="resident.image" class="card-img-top" alt="Resident Image" />
-                                <div class="card-body bg-primary">
-                                  <h6 class="">{{ resident.name }}</h6>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div v-else>
-                            <p>No residents found</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-
-
-    <!-- Contenedor de Filtros -->
-    <div class="container-filters bg-dark m-3 d-flex">
-      {{superFiltro}}
-      <div class="bg-warning container w-50 m-3 p-3 container-filter-checkbox-locations">
-        <h2>Filter by Dimension</h2>
-        <div v-for="dimension in dimensions" id="filter-checkboxs" class="">
-          <div class="form-check form-switch">
-            <label class="form-check-label" :for="dimension">
-              <input class="form-check-input" type="checkbox" :id="stat" :value="stat" v-model="filterDimension" />
-              {{stat ? stat : 'No status'}}
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="container-filter-search-locations bg-success container w-50 m-3 p-3">
-        <h2>Search</h2>
-        <input type="text" class="form-control" placeholder="Search by Name or Type" aria-label="Search"
-          v-model="filterText" />
-      </div>
-    </div>
-
-    <!-- Contenedor de Locations -->
-    <div id="locations" class="container-fluid d-flex flex-wrap justify-content-center bg-danger">
-      <div class="d-flex flex-wrap justify-content-center bg-danger m-3">
-        <div v-if="locations.length === 0">
-          <h2>No locations found</h2>
-        </div>
-
-        <div v-else class="d-flex flex-wrap justify-content-center bg-success">
-          <h2 class="m-3">Locations</h2>
-          <div class="container-cards-locations d-flex flex-wrap justify-content-center bg-danger">
-            <div class="card m-3" v-for="location in locations" :key="location.id">
-              <img :src="getImageUrl(location.dimension)" class="card-img-top h-50" alt="Location Image" />
-
-              <div class="card-body bg-primary h-50">
-                <h5 class="card-title">{{ location.name }}</h5>
-                <p class="card-text">
-                  {{ location.type ? location.type : 'No type' }}
-                </p>
-                <p class="card-text">
-                  {{ location.dimension ? location.dimension : 'No dimension'
-                  }}
-                </p>
-
-                <button class="btn btn-light" @click="openLocationModal(location)" title="More info">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M8 1.5a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13zm0-1a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" />
-                    <path
-                      d="m8.93 6.588-2.29.287.082.446c.45-.558.992-.985 1.481-1.326a1.416 1.416 0 0 1 .727-.225c.327 0 .628.09.854.26.198.15.291.37.291.63 0 .287-.093.537-.237.707-.197.227-.48.413-.821.547-.242.097-.52.17-.839.247-.412.097-.843.21-1.228.393-.433.203-.702.58-.702 1.096 0 .658.492 1.183 1.08 1.183.377 0 .703-.157.948-.416.2-.21.337-.522.406-.822l.083-.446 2.229-.287-.083.446c-.179.976-.844 1.724-1.707 2.129-.577.268-1.213.4-1.89.416-1.257-.016-2.227-.594-2.648-1.516-.433-.95-.221-2.073.425-2.877.676-.832 1.607-1.302 2.63-1.421z" />
-                  </svg>
-                </button>
-
-                <button class="btn btn-light" @click="addFavorite(location)" title="Add to Favorites">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
-                  </svg>
-                </button>
-
-                <!-- Modal de ubicación -->
-                <div v-if="showLocationModal" class="modal modal-style" tabindex="-1">
-                  <div class="modal-dialog text-white">
-                    <div class="modal-content"
-                      :style="{ backgroundImage: 'url(' + modalImageUrl + ')', backgroundSize: 'cover', backgroundPosition: 'center' }">
-                      <div class="modal-overlay"></div>
-                      <div class="modal-header">
-                        <h5 class="modal-title">
-                          {{ selectedLocation?.name }}
-                        </h5>
-                        <button type="button" class="btn-close" @click="closeModal" title="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <p>
-                          {{ selectedLocation?.type ? selectedLocation.type :
-                          'No type' }}
-                        </p>
-                        <p>
-                          {{ selectedLocation?.dimension ? selectedLocation.dimension : 'No dimension' }}
-                        </p>
-
-                        <div v-if="residents.length > 0">
-                          <h6>Residents</h6>
-                          <div class="d-flex flex-wrap container-resident">
-                            <div class="card-resident m-1" v-for="resident in residents" :key="resident.id">
-                              <img :src="resident.image" class="card-img-top" alt="Resident Image" />
-                              <div class="card-body bg-primary">
-                                <h6 class="">{{ resident.name }}</h6>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div v-else>
-                          <p>No residents found</p>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -491,6 +336,7 @@
         </div>
       </div>
     </div>
+
   </main>
 
 
