@@ -152,6 +152,16 @@ width: 9rem;
   position: relative;
 }
 
+.card-mini-body{
+    height:20vh;
+}
+.card-mini-title{
+    height: 30%;
+}
+.card-mini-about{
+    height: 50%;
+}
+
 .card-body{   
   height: 35vh;
 }

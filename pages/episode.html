@@ -255,7 +255,7 @@
                       alt="Character Image">
                   </div>
                   <div class="card-mini-body d-flex flex-column align-items-center gap-2">
-                    <h5 class="fw-bold text-white text-center">{{episode.name}}</h5>
+                    <h5 class="fw-bold text-white text-center card-mini-title">{{episode.name}}</h5>
                     <div class="card-mini-about">
                       <p class="text-white"><span>Episode - </span><span class="text-uppercase fw-bold">{{
                           episode.episode.toLowerCase()}}</span></p>
@@ -282,28 +282,7 @@
       </div>
     </div>
 
-    <!--Modal de los personajes del episodio -->
 
-<!--     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="charactersModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title fw-bold text-center w-100" id="charactersModalLabel">{{ selectedEpisode ?
-              selectedEpisode.name + ', Characters' : 'Characters' }}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <ul id="characters-list" class="list-group">
-              <li v-for="character in characters" :key="character.id" class="list-group-item">
-                <img :src="character.image" alt="" class="img-thumbnail me-2" style="width: 50px; height: 50px;">
-                {{ character.name }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
     <!-- Modal de ubicación -->
     <div id="charactersModal"  class="modal modal-style" tabindex="-1" role="dialog">
@@ -318,17 +297,7 @@
           </div>
 
           <div class="modal-body">
-            <!-- <div class="card-about-modal d-flex justify-content-between px-5 px-2">
-              <p class="text-white d-flex  mx-1">
-                <span class="modal-sb-tittle-2">Episode&nbsp;:&nbsp;</span>
-                <span class="text-uppercase fw-bold"><span> </span> {{ selectedEpisode.episode.toLowerCase() }}</span>
-              </p>
-              <p class="text-white d-flex mx-1">
-                <span class="modal-sb-tittle-2">Air Date&nbsp;:&nbsp;</span>
-                <span class="text-uppercase fw-bold"><span> </span> {{ selectedEpisode.air_date.toLowerCase()}}</span>
-              </p>
-            </div>  -->
-
+        
             <h6 class="modal-sb-tittle">  Characters</h6>
 
             <div class="d-flex justify-content-center flex-wrap gap-1 m-2">

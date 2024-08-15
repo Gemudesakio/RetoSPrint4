@@ -20,15 +20,14 @@
     transition: 0.4s ease-out;
 }
 
+
 /* .card-body{
     height: 30vh;
 }
-.card-title{
-    height: 35%;
-}
-.card-text{
+
+/* .card-text{
     height: 60%;
-} */
+}  */
 
 .title {
     color: white;
@@ -49,6 +48,8 @@
     height: 250px;
     overflow: hidden;
 }
+
+
 
 .card-img-top {
     width: 100%;
@@ -72,7 +73,15 @@
     transform: translateY(-20px);
     transition: 0.4s ease-out;
 }
-
+.card-mini-body{
+    height:25vh;
+}
+.card-mini-title{
+    height: 30%;
+}
+.card-mini-about{
+    height: 50%;
+}
 .title {
     color: white;
     font-weight: 400;
@@ -118,21 +127,6 @@
     margin: 0px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .card-miniatura {
     width: 5rem; 
     height: 5rem; 
@@ -146,7 +140,7 @@
 
 
     
-    .modal-overlay {
+.modal-overlay {
  position: absolute;
  top: 0;
  left: 0;

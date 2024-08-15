@@ -11,6 +11,16 @@
     /* Asegura que el posicionamiento absoluto del botón funcione correctamente */
 }
 
+.card-mini-body{
+    height:25vh;
+}
+.card-mini-title{
+    height: 30%;
+}
+.card-mini-about{
+    height: 50%;
+}
+
 .card:hover {
     transform: translateY(-20px);
     transition: 0.4s ease-out;
