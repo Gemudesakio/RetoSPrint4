@@ -467,6 +467,71 @@ footer {
 
 
 
+.customCheckBoxHolder {
+  margin: 5px;
+  display: flex;
+}
+
+.customCheckBox {
+  width: 120px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  background-color: #0000008c;
+  color: var(--white);
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
+  border: 5px solid var(--tardis-blue);
+}
+
+.customCheckBox:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.customCheckBoxInput {
+  display: none;
+}
+
+.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox {
+  color: var(--white);
+  box-shadow: 0px -4px 1px rgba(0, 0, 0, 0.23) inset, 0px -1px 1px rgba(255, 255, 255, 0.17), 0px 2px 4px rgba(0, 0, 0, 0.17);
+}
+
+.customCheckBoxInput.alive:checked + .customCheckBoxWrapper .customCheckBox {
+  background-color: var(--alive);
+  border-color: var(--alive);
+}
+
+.customCheckBoxInput.unknown:checked + .customCheckBoxWrapper .customCheckBox {
+  background-color: var(--unknown);
+  border-color: var(--unknown);
+}
+
+.customCheckBoxInput.dead:checked + .customCheckBoxWrapper .customCheckBox {
+  background-color: var(--dead);
+  border-color: var(--dead);
+}
+
+.customCheckBox .inner {
+  transition: transform 0.3s;
+  font-size: small;
+  font-weight: bold;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox .inner {
+  transform: translate(-2px);
+}
+
+
+
+
 
 @media (max-width: 768px) {
   .carousel {

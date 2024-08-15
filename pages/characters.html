@@ -75,21 +75,36 @@
       </div>
 
       <div class="container-header-page-filters">
+        {{superFiltro}}
+
         <div class="row p-5 py-5">
           <div class=" col-md-6 d-flex justify-content-center justify-content-md-start align-items-center mb-3 mb-md-0">
 
             <div class="container container-main-search">
+
               <div>
                 <h3>Filter by Status</h3>
               </div>
 
               <div class="d-flex flex-wrap gap-3">
-                <a @click="filterButton('Alive')" class="button-status button-status-alive "><span
-                    class="button-status-alive">Alive</span></a>
-                <a @click="filterButton('Dead')" class="button-status button-status-dead"><span>Dead</span></a>
-                <a @click="filterButton('unknown')" class="button-status button-status-unknown"><span>Unknown</span></a>
-                <a @click="resetFilter" class="button-status button-status-reset"><span>Clean Filter</span></a>
+                <div v-for="stat in status" :key="stat" class="customCheckBoxHolder">
+                  <input type="checkbox" :id="stat" class="customCheckBoxInput" :value="stat" v-model="filterStatus"
+                    :class="{'alive': stat === 'Alive', 'unknown': stat === 'unknown', 'dead': stat === 'Dead'}">
+                  <label :for="stat" class="customCheckBoxWrapper">
+                    <div class="customCheckBox">
+                      <div class="inner">
+                        {{ stat ? stat : 'No Status' }}
+                      </div>
+                    </div>
+                  </label>
+                </div>
+
+
               </div>
+
+
+
+
 
             </div>
 
@@ -126,82 +141,86 @@
     </div>
 
 
-
-    <section class="sec3">
+    <section>
+      
       <div class="container-fluid">
         <div class="container d-flex flex-wrap justify-content-center">
-          <div v-if="filteredCharacters.length === 0">
-
+          <div v-if="character.length === 0">
             <div class="card mb-3">
               <div class="card-mini-img-container">
                 <img src="https://decalfly.com/cdn/shop/products/rick-and-morty-circle-decal-sticker.jpg?v=1570918206"
                   class="card-img-top" alt="No Image">
               </div>
-
               <div class="card-body d-flex flex-column align-items-center gap-2">
                 <h4 class=" mt-2 fw-bold text-white text-center"> No characters found.</h4>
-
                 <div class="bar">
                   <div class="emptybar"></div>
                   <div class="filledbar"></div>
                 </div>
               </div>
             </div>
-
           </div>
 
-          <div v-for="char in filteredCharacters" :key="char.id" class="card">
+          <div v-for="char in character" :key="char.id" class="card">
             <div class="card-img-container">
-                <button class="btn btn-warning btn-favoritos" @click="agregarFavorito(char)" title="Add to Favorites">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
-                    </svg>
-                </button>
-                <img :src="char.image || '../assets/imagenes/prueba.jpg'" class="card-img-top" alt="Character Image">
+              <button class="btn btn-warning btn-favoritos" @click="agregarFavorito(char)" title="Add to Favorites">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                </svg>
+              </button>
+              <img :src="char.image || '../assets/imagenes/prueba.jpg'" class="card-img-top" alt="Character Image">
             </div>
             <div class="card-body d-flex flex-column align-items-center gap-2">
-                <h2 class="card-title fw-bold text-white text-center">{{ char.name }}</h2>
-                <div class="card-about">
-                    <p class="text-white d-flex justify-content-center flex-column mx-1">
-                        <span>Status </span>
-                        <span class="text-uppercase fw-bold"><span :class="getStatusClass(char.status)" class="status-dot"></span>{{ char.status.toLowerCase() }}</span>
-                    </p>
-                    <p class="text-white d-flex justify-content-center flex-column mx-1">
-                        <span>Gender </span>
-                        <span class="text-uppercase fw-bold"><span class="gender-icon" :class="getGenderClass(char.gender)"></span>{{ char.gender.toLowerCase() }}</span>
-                    </p>
+              <h2 class="card-title fw-bold text-white text-center">{{ char.name }}</h2>
+              <div class="card-about">
+                <p class="text-white d-flex justify-content-center flex-column mx-1">
+                  <span>Status </span>
+                  <span class="text-uppercase fw-bold"><span :class="getStatusClass(char.status)"
+                      class="status-dot"></span>{{ char.status.toLowerCase() }}</span>
+                </p>
+                <p class="text-white d-flex justify-content-center flex-column mx-1">
+                  <span>Gender </span>
+                  <span class="text-uppercase fw-bold"><span class="gender-icon"
+                      :class="getGenderClass(char.gender)"></span>{{ char.gender.toLowerCase() }}</span>
+                </p>
+              </div>
+              <div class="card-text-container">
+                <p class="card-text fw-bold text-white text-center">
+                  {{ char.name }} is a character in the series. Their status is {{ char.status.toLowerCase() }},
+                  they belong to the {{ char.species.toLowerCase() }} species, their gender is {{
+                  char.gender.toLowerCase() }},
+                  and their origin is {{ char.origin.name }}.
+                </p>
+              </div>
+
+            
+
+
+              <div class="posbtn">
+                <div class="bar">
+                  <div class="emptybar"></div>
+                  <div class="filledbar"></div>
                 </div>
-                <div class="card-text-container">
-                    <p class="card-text fw-bold text-white text-center">
-                        {{ char.name }} is a character in the series. Their status is {{ char.status.toLowerCase() }},
-                        they belong to the {{ char.species.toLowerCase() }} species, their gender is {{
-                        char.gender.toLowerCase() }},
-                        and their origin is {{ char.origin.name }}.
-                    </p>
+                <div class="btn-container mt-1">
+                  <a :href="'./details.html?id='+char.id" class="btn btn-primary">
+                    View more details
+                  </a>
                 </div>
-                <div class="posbtn">
-                    <div class="bar">
-                        <div class="emptybar"></div>
-                        <div class="filledbar"></div>
-                    </div>
-                    <div class="btn-container mt-1">
-                        <a :href="'./details.html?id='+char.id" class="btn btn-primary">
-                            View more details
-                        </a>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
-        
-        </div>
-        <div class="pagination d-flex justify-content-center gap-2 m-5">
-          <button class="btn btn-primary" @click="prevPage" :disabled="!info.prev">Prev</button>
-          <button class="btn btn-primary" @click="nextPage" :disabled="!info.next">Next</button>
-        </div>
+
+
       </div>
     </section>
 
-    <!-- Modal Favorites -->
+
+
+
+
     <div class="m-3 d-flex justify-content-center">
       <button type="button" class="btn btn-primary btn-floating" data-bs-toggle="modal"
         data-bs-target="#favoritesModal">
@@ -231,9 +250,8 @@
             <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <!-- Sección para personajes favoritos -->
             <div class="favorites-section">
-              <h2 class="section-title">Favorite Characters</h2>
+              <!-- <h2 class="section-title">Favorite Characters</h2> -->
               <div class="favorites-carousel">
                 <div v-if="favoritosCharacters.length === 0">
                   <div class="card-mini mb-3">
@@ -279,17 +297,23 @@
                       <p class="text-white"><span>Specie - </span><span class="text-uppercase fw-bold">{{
                           favorito.species.toLowerCase()}}</span></p>
                     </div>
+
+                    <div class="bar">
+                      <div class="emptybar"></div>
+                      <div class="filledbar"></div>
+                    </div>
+
+
                     <a :href="'./details.html?id='+favorito.id" class="btn btn-primary">View more details</a>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Sección para locaciones favoritas -->
-            <div class="favorites-section">
+            <!--  <div class="favorites-section">
               <h2 class="section-title">Favorite Locations</h2>
               <div class="favorites-carousel">
-                <div v-if="favoritosCharacters.length === 0"> <!-- Editar por el arreglo de locaciones -->
+                <div v-if="favoritosCharacters.length === 0"> 
                   <div class="card-mini mb-3">
                     <div class="card-mini-img-container">
                       <img
@@ -313,11 +337,10 @@
               </div>
             </div>
 
-            <!-- Sección para episodios favoritos -->
             <div class="favorites-section">
               <h2 class="section-title">Favorite Episodes</h2>
               <div class="favorites-carousel">
-                <div v-if="favoritosCharacters.length === 0"> <!-- Editar por el arreglo de episodios -->
+                <div v-if="favoritosCharacters.length === 0"> 
                   <div class="card-mini mb-3">
                     <div class="card-mini-img-container">
                       <img
@@ -338,7 +361,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -346,87 +369,6 @@
 
 
 
-
-    <!-- <div class="modal  fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content modal-favorites">
-          <div class="modal-header">
-
-            <h1 class="modal-title fs-5 fw-bold text-center w-100 " id="favoritesModalLabel">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFCA2C"
-                class=" mx-3 bi bi-star-fill" viewBox="0 0 16 16">
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-              </svg>
-              Favorites
-            </h1>
-            <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-
-            <div v-if="favoritosCharacters.length === 0">
-              <div class="card-mini mb-3">
-                <div class="card-mini-img-container">
-                  <img src="https://decalfly.com/cdn/shop/products/rick-and-morty-circle-decal-sticker.jpg?v=1570918206" class="card-mini-img-top" alt="No Image">
-                </div>
-
-                <div class="card-mini-body d-flex flex-column align-items-center gap-2">
-                  <h4 class=" mt-2 fw-bold text-white text-center"> No favorite characters yet.</h4>
-
-                  <div class="bar">
-                    <div class="emptybar"></div>
-                    <div class="filledbar"></div>
-                  </div>
-                  
-
-                </div>
-              </div>
-            </div>
-
-
-
-            <div v-for="favorito in favoritosCharacters" :key="favorito.id" class="card-mini mb-3">
-              <div class="card-mini-img-container">
-                <button class="btn btn-danger btn-favoritos" @click="eliminarFavorito(favorito)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                    <path
-                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                  </svg>
-                </button>
-                <img :src="favorito.image || '../assets/imagenes/prueba.jpg'" class="card-mini-img-top"
-                  alt="Character Image">
-              </div>
-
-              <div class="card-mini-body d-flex flex-column align-items-center gap-2">
-                <h5 class=" fw-bold text-white text-center">{{favorito.name}}</h5>
-
-                <div class="card-mini-about">
-                  <p class=" text-white "><span>Status - </span><span class="text-uppercase fw-bold">{{
-                      favorito.status.toLowerCase()}}</span></p>
-                  <p class=" text-white "><span>Gender - </span><span class="text-uppercase fw-bold">{{
-                      favorito.gender.toLowerCase()}}</span></p>
-                  <p class=" text-white "><span>Specie - </span><span class="text-uppercase fw-bold">{{
-                      favorito.species.toLowerCase()}}</span></p>
-                </div>
-
-                <div class="bar">
-                  <div class="emptybar"></div>
-                  <div class="filledbar"></div>
-                </div>
-                <a :href="'./details.html?id='+favorito.id" class="btn btn-primary">
-                  View more details
-                </a>
-
-              </div>
-            </div>
-          </div>
-         
-        </div>
-      </div>
-    </div> -->
   </main>
 
   <footer class="footer py-5 text-white">
