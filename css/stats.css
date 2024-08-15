@@ -1,14 +1,110 @@
+/* Estilos generales de la maqueta base no integrar estilos en esta hoja*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+  }
 
+  main{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
 
+  }
+  
+  :root {
+    --kiwi-green: #88e23b;
+    --texas: #ebe480;
+    --tardis-blue: #043c6e;
+    --endo: #60a85f;
+    --mystery: #a6cccc;
+    --calla-green: #6b7132;
+    --white: #fff;
+    --black: #000;
+    --favorites: #f0ff25;
+    --alive: #60a85f;
+    --dead: #FF472C;
+    --unknown: #808080;
+    --warning: #FFCA2C;
+    --warning-complementary: , #FF472C;
+  }
+  
+  header {
+    -webkit-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
+    -moz-box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
+    box-shadow: -1px 10px 14px 0px rgba(0, 0, 0, 0.34);
+  }
+  
+  main {
+    min-height: 90vh;
+  }
+  
+  .navbar-brand-logo {
+    height: 40px;
+  }
+  
+  .nav-item :hover {
+    color: var(--mystery);
+    background-color: var(--black);
+  }
+  
+  .nav-link-active {
+    color: var(--kiwi-green);
+    font-size: large;
+    font-weight: bold;
+  
+  }
+  
+  footer {
+    background-image: url(https://wallpapercave.com/wp/wp7227802.jpg);
+    background-size: cover;
+  }
+  
+  .logo-footer {
+    max-width: 150px;
+  }
+  
+  .footer-note {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--black);
+    background-color: var(--mystery);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
+  }
+  
+  .footer-note .copyright-symbol {
+    font-size: 1.2rem;
+    color: var(--tardis-blue);
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .footer-note strong {
+    color: var(--tardis-blue);
+    font-weight: bold;
+  }
 
-header {
-    height: 50px;
-}
+  .container-header-page {
+    background-color: #00000069
+   
+  }
+  
+  .container-header-page-filters {
+    background-size: cover;
+  }
+  
+  
+  .container-header-page h1 {
+    font-size: 4rem;
+    font-weight: 900;
+  }
+  
+
+  
 
 .container-fluid {
 max-height: 50px;
@@ -67,9 +163,9 @@ max-height: 50px;
     transform: scale(1.2);
 }
 
-#graficoStatus, #graficoGender, #graficoSpecies {
+/* #graficoStatus, #graficoGender, #graficoSpecies {
     background-color: #E0E5B6;
-}
+} */
 .sec1-video {
     width: 100vw;
     height: 100vh;
@@ -78,12 +174,245 @@ max-height: 50px;
     left: 0;
     z-index: -1;
     overflow: hidden; /* Para asegurar que el video no se desborde */
-}
-
-.video-bg {
+    filter: brightness(0.5);
+  }
+  
+  .video-bg {
     width: 100%;
     height: 100%;
     object-fit: cover; 
     object-position: center;
     z-index: -1; 
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#graficoStatus {
+    background-color: var(--mystery);
+    border: 2px solid var(--kiwi-green);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 15rem;
 }
+
+#graficoStatus h1 {
+    color: var(--tardis-blue);
+    text-decoration: underline;
+    margin-bottom: 0.5rem;
+}
+
+#graficoStatus .status {
+    background-color: var(--favorites);
+    width: 100%;
+    height: 10px;
+    border-radius: 4px;
+}
+
+#graficoStatus .stats {
+    margin-top: 0.5rem;
+}
+
+#graficoStatus .stats div {
+    font-weight: bold;
+    padding: 0.3rem;
+    border-radius: 4px;
+    margin-bottom: 0.2rem;
+}
+
+#graficoStatus .stats div:nth-child(1) {
+    color: var(--white);
+    background-color: var(--alive);
+}
+
+#graficoStatus .stats div:nth-child(2) {
+    color: var(--white);
+    background-color: var(--dead);
+}
+
+#graficoStatus .stats div:nth-child(3) {
+    color: var(--black);
+    background-color: var(--unknown);
+}
+
+
+#graficoSpecies {
+    background-color: var(--mystery);
+    border: 2px solid var(--kiwi-green);
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 40rem;
+}
+
+#graficoSpecies h4 {
+    color: var(--tardis-blue);
+    margin-bottom: 0.5rem;
+}
+
+#graficoSpecies .table-responsive {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+#graficoSpecies .table {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#graficoSpecies thead {
+    background-color: var(--texas);
+}
+
+#graficoSpecies th {
+    color: var(--black);
+}
+
+#graficoSpecies tbody tr:nth-child(odd) {
+    background-color: var(--endo);
+}
+
+#graficoSpecies tbody tr:nth-child(even) {
+    background-color: var(--calla-green);
+}
+
+#graficoSpecies tbody tr td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#graficoSpecies img {
+    border: 2px solid var(--kiwi-green);
+    border-radius: 4px;
+}
+
+
+#graficoGender {
+    background-color: var(--mystery);
+    border: 2px solid var(--kiwi-green);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 15rem;
+}
+
+#graficoGender h1 {
+    color: var(--tardis-blue);
+    text-decoration: underline;
+    margin-bottom: 0.5rem;
+}
+
+#graficoGender .gender {
+    background-color: var(--favorites);
+    width: 100%;
+    height: 10px;
+    border-radius: 4px;
+}
+
+#graficoGender .stats {
+    margin-top: 0.5rem;
+}
+
+#graficoGender .stats div {
+    font-weight: bold;
+    padding: 0.3rem;
+    border-radius: 4px;
+    margin-bottom: 0.2rem;
+    text-align: center;
+}
+
+#graficoGender .stats div:nth-child(1) {
+    color: var(--white);
+    background-color: var(--tardis-blue);
+}
+
+#graficoGender .stats div:nth-child(2) {
+    color: var(--black);
+    background-color: var(--texas);
+}
+
+#graficoGender .stats div:nth-child(3) {
+    color: var(--white);
+    background-color: var(--endo);
+}
+
+#graficoGender .stats div:nth-child(4) {
+    color: var(--white);
+    background-color: var(--unknown);
+}
+
+.custom-btn-group {
+    background-color: var(--mystery);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn-group .btn {
+    border: none;
+    font-weight: bold;
+    color: var(--white);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 120px;
+}
+
+.custom-btn-group .btn-success {
+    background-color: var(--endo);
+}
+
+.custom-btn-group .btn-warning {
+    background-color: var(--warning);
+    color: var(--black);
+}
+
+.custom-btn-group .btn:hover {
+    transform: scale(1.05);
+}
+
+.custom-btn-group .btn:focus {
+    box-shadow: 0px 0px 5px var(--kiwi-green);
+}
+
+.text-tardis-blue {
+    color: var(--tardis-blue);
+}
+
+.text-kiwi-green {
+    color: var(--kiwi-green);
+}
+
+.text-texas {
+    color: var(--texas);
+}
+
+.text-endo {
+    color: var(--endo);
+}
+
+.text-mystery {
+    color: var(--mystery);
+}   
+
+.text-calla-green {
+    color: var(--calla-green);
+}
+
+.text-white {
+    color: var(--white);
+}
+

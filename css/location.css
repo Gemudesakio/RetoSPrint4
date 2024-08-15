@@ -141,7 +141,7 @@ width: 9rem;
 .card {
   min-height: 50vh;
   max-height: 90vh;
-  max-width: 50vh;
+  max-width: 300px;
   background-color: #17141d;
   border-radius: 10px;
   box-shadow: -1rem 0 3rem #000;
@@ -384,3 +384,4 @@ width: 9rem;
 .card-miniatura > img {
   filter: brightness(0.9);
 }
+
