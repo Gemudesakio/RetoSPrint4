@@ -14,6 +14,16 @@
     transition: 0.4s ease-out;
 }
 
+.card-body{
+    height: 30vh;
+}
+.card-title{
+    height: 35%;
+}
+.card-text{
+    height: 60%;
+}
+
 .title {
     color: white;
     font-weight: 400;
