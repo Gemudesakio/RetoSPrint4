@@ -162,7 +162,7 @@ width: 9rem;
     height: 50%;
 }
 
-.card-body{   
+/* .card-body{   
   height: 35vh;
 }
 .card-title{
@@ -170,7 +170,7 @@ width: 9rem;
 }
 .card-text{
    height: 50%;
-}
+} */
 
 .card:hover {
   transform: translateY(-20px);
