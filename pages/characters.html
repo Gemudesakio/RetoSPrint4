@@ -14,7 +14,7 @@
   <!--Estilos Base-->
   <link rel="stylesheet" href="../css/main.css">
   <!--Estilos de la pagina-->
-  <link rel="stylesheet" href="../css/episodes.css">
+  <link rel="stylesheet" href="../css/characters.css">
 
 </head>
 
@@ -149,38 +149,50 @@
             </div>
 
           </div>
-          
+
           <div v-for="char in filteredCharacters" :key="char.id" class="card">
             <div class="card-img-container">
-
-              <button class="btn btn-warning btn-favoritos" @click="agregarFavorito(char)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
-                </svg>
-              </button>
-
-
-              <img :src="char.image || '../assets/imagenes/prueba.jpg'" class="card-img-top" alt="Character Image">
+                <button class="btn btn-warning btn-favoritos" @click="agregarFavorito(char)" title="Add to Favorites">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg>
+                </button>
+                <img :src="char.image || '../assets/imagenes/prueba.jpg'" class="card-img-top" alt="Character Image">
             </div>
             <div class="card-body d-flex flex-column align-items-center gap-2">
-              <h2 class="card-title fw-bold text-white text-center">{{ char.name }}</h2>
-              <p class="card-text fw-bold text-white text-center">
-                {{ char.name }} is a character in the series. Their status is {{ char.status.toLowerCase() }},
-                they belong to the {{ char.species.toLowerCase() }} species, their gender is {{
-                char.gender.toLowerCase() }},
-                and their origin is {{ char.origin.name }}.
-              </p>
-              <div class="bar">
-                <div class="emptybar"></div>
-                <div class="filledbar"></div>
-              </div>
-              <a :href="'./details.html?id='+char.id" class="btn btn-primary">
-                View more details
-              </a>
+                <h2 class="card-title fw-bold text-white text-center">{{ char.name }}</h2>
+                <div class="card-about">
+                    <p class="text-white d-flex justify-content-center flex-column mx-1">
+                        <span>Status </span>
+                        <span class="text-uppercase fw-bold"><span :class="getStatusClass(char.status)" class="status-dot"></span>{{ char.status.toLowerCase() }}</span>
+                    </p>
+                    <p class="text-white d-flex justify-content-center flex-column mx-1">
+                        <span>Gender </span>
+                        <span class="text-uppercase fw-bold"><span class="gender-icon" :class="getGenderClass(char.gender)"></span>{{ char.gender.toLowerCase() }}</span>
+                    </p>
+                </div>
+                <div class="card-text-container">
+                    <p class="card-text fw-bold text-white text-center">
+                        {{ char.name }} is a character in the series. Their status is {{ char.status.toLowerCase() }},
+                        they belong to the {{ char.species.toLowerCase() }} species, their gender is {{
+                        char.gender.toLowerCase() }},
+                        and their origin is {{ char.origin.name }}.
+                    </p>
+                </div>
+                <div class="posbtn">
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                    </div>
+                    <div class="btn-container mt-1">
+                        <a :href="'./details.html?id='+char.id" class="btn btn-primary">
+                            View more details
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
+        </div>
+        
         </div>
         <div class="pagination d-flex justify-content-center gap-2 m-5">
           <button class="btn btn-primary" @click="prevPage" :disabled="!info.prev">Prev</button>

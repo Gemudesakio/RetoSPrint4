@@ -1,0 +1,178 @@
+.sec2 {
+    max-width: 100vw;
+    min-height: 25vh;
+    background-color: #38363670;
+}
+
+.card {
+    min-height: 60vh;
+    max-width: 50vh;
+    background-color: #17141d;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem #000;
+    margin: 20px;
+    transition: 0.4s ease-out;
+    padding: 20px;
+    position: relative; /* Asegura que el posicionamiento absoluto del botón funcione correctamente */
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+}
+
+.title {
+    color: white;
+    font-weight: 400;
+    position: absolute;
+    top: 15px;
+    text-align: center;
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+
+/* Estilo para el contenedor del scroll */
+.card-text-container {
+    max-height: 200px; /* Altura máxima del contenedor de texto */
+    overflow-y: auto; /* Habilita el scroll vertical si el texto excede la altura */
+    margin-bottom: 4rem; /* Asegura que haya espacio debajo del contenedor de texto */
+}
+
+/* Estiliza la barra de scroll en el contenedor */
+.card-text-container::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de scroll */
+    height: 8px; /* Altura de la barra de scroll horizontal */
+}
+
+/* Estilo para el fondo de la barra de scroll */
+.card-text-container::-webkit-scrollbar-track {
+    background: #2c2c2c; /* Color de fondo de la barra de scroll */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilo para el deslizador de la barra de scroll */
+.card-text-container::-webkit-scrollbar-thumb {
+    background: #7d7d7d; /* Color del deslizador */
+    border-radius: 10px; /* Bordes redondeados del deslizador */
+    border: 2px solid #2c2c2c; /* Borde del deslizador para un mejor contraste */
+}
+
+/* Estilo para el deslizador cuando está en estado activo (hover) */
+.card-text-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del deslizador al pasar el ratón */
+}
+
+.card-text {
+    margin: 0; /* Elimina márgenes adicionales del párrafo */
+    line-height: 1.2; /* Ajusta el interlineado para un mejor ajuste */
+}
+
+.posbtn {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 2rem); /* Ajusta el ancho para que el padding no afecte */
+    padding: 0 1rem; /* Añade padding si es necesario */
+}
+
+
+.card-mini {
+    min-height: 150px;
+    max-width: 200px;
+    background-color: #17141d;
+    border-radius: 10px;
+    box-shadow: -0.3rem 0 1rem #000;
+    margin: 20px;
+    transition: 0.4s ease-out;
+    padding: 20px;
+}
+
+.card-mini:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+}
+
+.title {
+    color: white;
+    font-weight: 400;
+    position: absolute;
+    top: 15px;
+    text-align: center;
+}
+
+
+
+.card-mini:hover .filledbar {
+    width: 150px;
+    transition: 0.4s ease-out;
+}
+
+.card-mini-img-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+
+
+.card-mini-img-top {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+
+.card-mini-about>p {
+    color: white;
+    font-weight: 100;
+    font-size: 1rem;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+.card-about {
+    display: flex;
+
+}
+
+.posbtn {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    padding: 0 1rem; /* Añade un poco de padding si es necesario */
+}
+
+
+.btn-favoritos {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 10;
+}
+
+

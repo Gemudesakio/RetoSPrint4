@@ -354,10 +354,9 @@ footer {
 
 /* Estilo de la barra de progreso */
 .bar {
-  margin-left: 150px;
   width: 150px;
   height: 5px;
-  transform: translateX(-50%);
+  transform: translateX(-0%);
 }
 
 .emptybar {
@@ -419,6 +418,52 @@ footer {
   scroll-snap-align: start;
   min-width: 200px;
 }
+
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.status-alive {
+  background-color: var(--alive);
+}
+
+.status-dead {
+  background-color: var(--dead);
+}
+
+.status-unknown {
+  background-color: var(--unknown);
+}
+
+.gender-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+  background-size: cover;
+}
+
+.gender-male {
+  background-image: url('../assets/imagenes/male.png'); /* Reemplaza con la ruta a tu ícono de hombre */
+}
+
+
+.gender-female {
+  background-image: url('../assets/imagenes/femenine.png'); /* Reemplaza con la ruta a tu ícono de mujer */
+}
+
+
+.gender-unknown {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/3182/3182443.png'); /* Reemplaza con la ruta a tu ícono de desconocido */
+}
+
+
 
 
 

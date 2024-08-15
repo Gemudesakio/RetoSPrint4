@@ -64,7 +64,29 @@ const appCharacter = createApp({
         "favoritosCharacters",
         JSON.stringify(this.favoritosCharacters)
       )
-    }
+    },
+    getStatusClass(status) {
+      switch (status.toLowerCase()) {
+        case 'alive':
+          return 'status-alive';
+        case 'dead':
+          return 'status-dead';
+        default:
+          return 'status-unknown';
+      }
+    },
+    getGenderClass(gender) {
+      switch (gender.toLowerCase()) {
+          case 'male':
+              return 'gender-male';
+          case 'female':
+              return 'gender-female';
+          case 'unknown':
+              return 'gender-unknown';
+          default:
+              return 'gender-unknown';
+      }
+  }
   },
   computed: {
     filteredCharacters() {
