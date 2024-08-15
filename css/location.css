@@ -43,6 +43,7 @@
 
 
 
+
 .card-mini:hover .filledbar {
   width: 150px;
   transition: 0.4s ease-out;
@@ -141,7 +142,7 @@ width: 9rem;
 .card {
   min-height: 50vh;
   max-height: 90vh;
-  max-width: 50vh;
+  max-width: 300px;
   background-color: #17141d;
   border-radius: 10px;
   box-shadow: -1rem 0 3rem #000;
@@ -149,6 +150,16 @@ width: 9rem;
   transition: 0.4s ease-out;
   padding: 20px;
   position: relative;
+}
+
+.card-body{   
+  height: 35vh;
+}
+.card-title{
+  height: 40%;
+}
+.card-text{
+   height: 50%;
 }
 
 .card:hover {
